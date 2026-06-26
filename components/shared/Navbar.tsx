@@ -30,6 +30,7 @@ export default function Navbar() {
     { name: "Tentang Kami", href: "/about" },
     { name: "Area Praktik", href: "/practice-areas" },
     { name: "Tim Pengacara", href: "/team" },
+    { name: "Rekam Jejak", href: "/case-studies" },
     { name: "Artikel", href: "/insights" },
   ];
 
@@ -42,16 +43,18 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+        {/* Tambahkan 'relative' di kontainer utama ini */}
+        <div className="flex items-center justify-between h-16 relative">
+          
+          {/* 1. Bagian Kiri: Logo */}
+          <Link href="/" className="flex items-center gap-2 group z-10">
             <span className="font-serif text-2xl font-bold text-white tracking-wide group-hover:opacity-80 transition-opacity">
               Satya <span className="text-[#D4AF37]">&</span> Partners
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* 2. Bagian Tengah: Desktop Nav (Tepat di tengah menggunakan absolute positioning) */}
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 absolute left-1/2 -translate-x-1/2 w-max">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -72,11 +75,14 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            
+          </div>
+
+          {/* 3. Bagian Kanan: CTA Desktop & Tombol Mobile */}
+          <div className="flex items-center z-10">
             {/* Tombol CTA Desktop */}
             <Link
               href="/contact"
-              className="group relative overflow-hidden bg-[#D4AF37] text-[#0F172A] px-6 py-2.5 rounded-sm text-sm font-bold transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+              className="hidden lg:flex group relative overflow-hidden bg-[#D4AF37] text-[#0F172A] px-6 py-2.5 rounded-sm text-sm font-bold transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Konsultasi <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -84,18 +90,17 @@ export default function Navbar() {
               {/* Efek kilap pada tombol */}
               <div className="absolute inset-0 h-full w-full bg-white/20 -translate-x-full skew-x-12 group-hover:animate-shimmer" />
             </Link>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-300 hover:text-white focus:outline-none p-2"
+              className="lg:hidden text-slate-300 hover:text-white focus:outline-none p-2"
               aria-label="Toggle Menu"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
+
         </div>
       </div>
 
@@ -107,7 +112,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-[#0F172A] border-t border-slate-800 overflow-hidden"
+            className="lg:hidden bg-[#0F172A] border-t border-slate-800 overflow-hidden"
           >
             <div className="px-6 pt-4 pb-8 space-y-2">
               {navLinks.map((link) => {
