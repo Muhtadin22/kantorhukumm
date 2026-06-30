@@ -2,6 +2,15 @@ import Link from "next/link";
 import { MapPin, Phone, Mail, ChevronRight } from "lucide-react";
 
 export default function Footer() {
+  // 1. Definisikan daftar tautan beserta rute URL-nya
+  const quickLinks = [
+    { label: "Tentang Kami", href: "/tentang-kami" },
+    { label: "Area Praktik", href: "/area-praktik" },
+    { label: "Tim Pengacara", href: "/tim-pengacara" },
+    { label: "Publikasi", href: "/publikasi" },
+    { label: "Karir", href: "/karir" }
+  ];
+
   return (
     <footer className="bg-[#0F172A] text-slate-300 pt-16 pb-8 border-t border-slate-800">
       <div className="container mx-auto px-6 lg:px-12">
@@ -20,10 +29,11 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Tautan Cepat</h4>
             <ul className="space-y-3">
-              {["Tentang Kami", "Area Praktik", "Tim Pengacara", "Publikasi", "Karir"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-[#D4AF37] transition-colors flex items-center text-sm">
-                    <ChevronRight size={14} className="mr-2 text-[#D4AF37]" /> {item}
+              {/* 2. Map data quickLinks ke dalam komponen Link */}
+              {quickLinks.map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="hover:text-[#D4AF37] transition-colors flex items-center text-sm">
+                    <ChevronRight size={14} className="mr-2 text-[#D4AF37]" /> {item.label}
                   </Link>
                 </li>
               ))}
