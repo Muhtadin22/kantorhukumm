@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import FadeIn from "@/components/motion/FadeIn";
-import Link from "next/link";
-import { Calendar, Clock, ArrowRight, Mail, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, Clock, ArrowRight, Mail, X, ChevronDown, Tag } from "lucide-react";
 
 // 1. Definisikan tipe data untuk Artikel
 interface Article {
@@ -18,10 +18,9 @@ interface Article {
 }
 
 export default function InsightsPage() {
-  // 2. Berikan tipe data pada useState: bisa berupa 'Article' atau 'null'
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("Semua Topik");
 
-  // 3. (Opsional namun disarankan) Berikan tipe pada array articles
   const articles: Article[] = [
     { 
       title: "Kewajiban Lapor Pemilik Manfaat (Beneficial Ownership) Bagi Korporasi", 
@@ -82,95 +81,108 @@ export default function InsightsPage() {
       author: "Ratna Kumala, S.H., M.H.",
       readTime: "9 Menit",
       img: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=800"
-    },
-    { 
-      title: "Panduan Pendirian PT PMA di Ibu Kota Nusantara (IKN)", 
-      excerpt: "Insentif fiskal, prosedur perizinan berusaha, dan kepastian hak atas tanah bagi investor asing di wilayah IKN.",
-      content: "Sebagai proyek strategis nasional, IKN menawarkan berbagai super deduction tax, tax holiday, serta jaminan Hak Guna Usaha (HGU) hingga 95 tahun yang menggiurkan bagi Penanaman Modal Asing (PMA). \n\nNamun, proses pendirian PT PMA di wilayah otorita IKN memiliki perbedaan prosedural dibandingkan daerah lain yang menggunakan sistem OSS secara umum. Artikel ini merinci tahapan perizinan khusus, syarat kemitraan dengan entitas lokal, dan cara memaksimalkan insentif pajak yang tersedia.",
-      date: "15 Maret 2026", 
-      cat: "Korporasi",
-      author: "Andira Kirana, S.H., M.H.",
-      readTime: "8 Menit",
-      img: "https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&q=80&w=800"
-    },
-    { 
-      title: "Menavigasi Sengketa Pajak Transfer Pricing Multinasional", 
-      excerpt: "Pendekatan Mutual Agreement Procedure (MAP) versus Pengadilan Pajak dalam sengketa afiliasi lintas negara.",
-      content: "Pemeriksaan atas transaksi afiliasi (transfer pricing) oleh otoritas pajak semakin agresif. Ketika perusahaan multinasional terkena koreksi pajak ganda (double taxation), mereka dihadapkan pada pilihan: mengajukan banding ke Pengadilan Pajak atau menggunakan Mutual Agreement Procedure (MAP).\n\nKajian ini membandingkan efektivitas waktu, biaya, dan tingkat keberhasilan dari kedua jalur penyelesaian sengketa tersebut, lengkap dengan studi kasus penerapan Advance Pricing Agreement (APA) sebagai alat pencegahan sengketa di masa depan.",
-      date: "01 Maret 2026", 
-      cat: "Kepatuhan",
-      author: "Ahmad Abbas, S.H., LL.M.",
-      readTime: "11 Menit",
-      img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800"
     }
   ];
 
   const categories = ["Semua Topik", "Korporasi", "Litigasi", "Kepatuhan", "Hak Kekayaan Intelektual", "Ketenagakerjaan"];
 
+  // Filter logika
+  const filteredArticles = activeCategory === "Semua Topik" 
+    ? articles 
+    : articles.filter(article => article.cat === activeCategory);
+
   return (
-    <div className="w-full bg-slate-50 min-h-screen pb-24 relative">
-      {/* Header Section */}
-      <section className="bg-[#0F172A] pt-32 pb-24 text-center">
-        <FadeIn>
-          <h1 className="font-serif text-4xl md:text-5xl text-white font-bold mb-6">Jurnal & Publikasi Hukum</h1>
-          <div className="w-20 h-1 bg-[#D4AF37] mx-auto mb-6"></div>
-          <p className="text-slate-300 max-w-2xl mx-auto text-lg px-6 leading-relaxed">
-            Eksplorasi wawasan strategis, analisis regulasi terbaru, dan kajian doktrinal dari para pakar hukum di Satya & Partners.
-          </p>
-        </FadeIn>
+    <div className="w-full bg-slate-50 min-h-screen pb-24 relative selection:bg-[#D4AF37] selection:text-[#0F172A]">
+      
+      {/* 1. HERO SECTION (Seragam dengan About & Experience) */}
+      <section className="relative w-full h-[90vh] bg-[#0F172A] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1505664177922-928394b2951b?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-20 mix-blend-luminosity" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/80 via-[#0F172A]/90 to-[#0F172A]" />
+        
+        <div className="relative z-10 container mx-auto px-6 max-w-5xl text-center mt-20">
+          <FadeIn>
+            <span className="text-[#D4AF37] font-bold tracking-[0.2em] uppercase text-sm mb-6 block">
+              Pusat Pengetahuan
+            </span>
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-bold mb-8 tracking-tight leading-[1.1]">
+              Jurnal & <br className="hidden md:block"/>
+              <span className="italic font-light text-slate-300">Publikasi Hukum.</span>
+            </h1>
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg md:text-xl font-light">
+              Eksplorasi wawasan strategis, analisis regulasi terbaru, dan kajian doktrinal dari para pakar hukum di OBH & Partners.
+            </p>
+          </FadeIn>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-500">
+          <ChevronDown size={32} strokeWidth={1} />
+        </div>
       </section>
 
-      <section className="container mx-auto px-6 max-w-7xl -mt-10">
+      <section className="container mx-auto px-6 max-w-7xl pt-24">
         
-        {/* Featured Article */}
+        {/* 2. FEATURED ARTICLE (Modern Editorial Card) */}
         <FadeIn>
           <button 
             onClick={() => setSelectedArticle(articles[0])}
-            className="group block relative w-full text-left rounded-3xl overflow-hidden mb-16 shadow-2xl h-[450px] lg:h-[500px]"
+            className="group block relative w-full text-left rounded-3xl overflow-hidden mb-20 shadow-xl hover:shadow-2xl h-[500px] lg:h-[550px] transition-all duration-500"
           >
-            <img 
-              src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1600" 
-              alt="Featured Article" 
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/70 to-transparent" />
+            <div className="absolute inset-0 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1600" 
+                alt="Featured Article" 
+                className="w-full h-full object-cover group-hover:scale-105 group-hover:rotate-1 transition-transform duration-1000 ease-out" 
+              />
+            </div>
+            {/* Gradien gelap yang elegan */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <div className="absolute bottom-0 left-0 w-full p-8 md:p-14 lg:w-3/4">
-              <div className="flex flex-wrap items-center gap-4 mb-4">
-                <span className="bg-[#D4AF37] text-[#0F172A] text-xs font-bold px-3 py-1.5 rounded-sm uppercase tracking-wide">
-                  Artikel Sorotan
+            <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 lg:w-4/5 flex flex-col justify-end h-full">
+              <div className="flex flex-wrap items-center gap-4 mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <span className="bg-[#D4AF37] text-[#0F172A] text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
+                  Sorotan Utama
                 </span>
-                <span className="text-slate-300 text-sm flex items-center"><Clock size={14} className="mr-1.5"/> 12 Menit Baca</span>
+                <span className="text-slate-200 text-sm flex items-center font-medium bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full">
+                  <Clock size={14} className="mr-2 text-[#D4AF37]"/> 12 Menit Baca
+                </span>
               </div>
               
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 group-hover:text-[#D4AF37] transition-colors leading-tight">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 group-hover:text-[#D4AF37] transition-colors duration-500 leading-tight">
                 Dampak Berlakunya UU Pelindungan Data Pribadi (PDP) Terhadap Operasional Bisnis Multinasional
               </h2>
               
-              <p className="text-slate-300 text-lg mb-6 line-clamp-2">
+              <p className="text-slate-300 text-lg mb-8 line-clamp-2 md:line-clamp-3 max-w-3xl">
                 Analisis komprehensif mengenai kewajiban pengendali data, ancaman sanksi administratif, hingga langkah mitigasi strategis yang harus segera diimplementasikan oleh pelaku usaha di yurisdiksi Indonesia.
               </p>
               
-              <div className="flex items-center justify-between border-t border-slate-600/50 pt-4">
-                <p className="text-white font-medium text-sm">Oleh: <span className="text-[#D4AF37]">Ahmad Abbas, S.H., LL.M.</span></p>
-                <span className="text-white text-sm flex items-center group-hover:text-[#D4AF37] transition-colors">
-                  Baca Artikel Lengkap <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              <div className="flex items-center justify-between border-t border-slate-500/50 pt-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-slate-700 border-2 border-[#D4AF37] flex items-center justify-center text-xs font-bold text-white">
+                    AA
+                  </div>
+                  <p className="text-white font-medium text-sm">Oleh <span className="text-[#D4AF37]">Ahmad Abbas, S.H., LL.M.</span></p>
+                </div>
+                <span className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white/10 group-hover:bg-[#D4AF37] text-white group-hover:text-[#0F172A] backdrop-blur-sm transition-all duration-300">
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
             </div>
           </button>
         </FadeIn>
 
-        {/* Category Filters */}
+        {/* 3. CATEGORY FILTERS (Interactive & Scrollable on Mobile) */}
         <FadeIn delay={0.1}>
-          <div className="flex flex-wrap items-center gap-3 mb-12 border-b border-slate-200 pb-6">
+          <div className="flex items-center gap-2 mb-12 border-b border-slate-200 pb-6 overflow-x-auto scrollbar-hide">
+            <Tag size={20} className="text-slate-400 mr-2 shrink-0" />
             {categories.map((cat, i) => (
               <button 
                 key={i}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                  i === 0 
-                  ? "bg-[#0F172A] text-white shadow-md" 
-                  : "bg-white text-slate-600 border border-slate-200 hover:border-[#0F172A] hover:text-[#0F172A]"
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
+                  activeCategory === cat 
+                  ? "bg-[#0F172A] text-white shadow-lg shadow-[#0F172A]/20 scale-105" 
+                  : "bg-white text-slate-500 border border-slate-200 hover:border-[#0F172A] hover:text-[#0F172A]"
                 }`}
               >
                 {cat}
@@ -179,148 +191,179 @@ export default function InsightsPage() {
           </div>
         </FadeIn>
 
-        {/* Article Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 mb-24">
-          {articles.map((post, i) => (
-            <FadeIn delay={0.1 * i} key={i}>
-              <article className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
+        {/* 4. ARTICLE GRID (Bento/Modern Card dengan AnimatePresence) */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 min-h-[400px]">
+          <AnimatePresence mode="popLayout">
+            {filteredArticles.map((post, i) => (
+              <motion.article 
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                key={post.title}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-500 group flex flex-col h-full cursor-pointer"
+                onClick={() => setSelectedArticle(post)}
+              >
                 {/* Thumbnail */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-56 overflow-hidden">
                   <img 
                     src={post.img} 
                     alt={post.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-sm shadow-sm">
-                    <span className="text-[#D4AF37] font-bold text-xs tracking-widest uppercase">{post.cat}</span>
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm">
+                    <span className="text-[#0F172A] font-bold text-xs tracking-wider uppercase">{post.cat}</span>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex items-center gap-4 text-slate-500 text-sm mb-4">
+                <div className="p-8 flex flex-col flex-grow relative">
+                  {/* Efek Garis Emas saat Hover */}
+                  <div className="absolute top-0 left-8 right-8 h-px bg-[#D4AF37] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+
+                  <div className="flex items-center gap-4 text-slate-400 text-xs font-medium mb-4 pt-2 uppercase tracking-wide">
                     <span className="flex items-center"><Calendar size={14} className="mr-1.5 text-[#D4AF37]"/> {post.date}</span>
                     <span className="flex items-center"><Clock size={14} className="mr-1.5 text-[#D4AF37]"/> {post.readTime}</span>
                   </div>
                   
-                  <button onClick={() => setSelectedArticle(post)} className="flex-grow text-left">
-                    <h3 className="font-serif text-2xl font-bold text-[#0F172A] leading-snug mb-3 group-hover:text-[#D4AF37] transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed line-clamp-3 mb-6">
-                      {post.excerpt}
-                    </p>
-                  </button>
+                  <h3 className="font-serif text-2xl font-bold text-[#0F172A] leading-snug mb-4 group-hover:text-[#D4AF37] transition-colors duration-300">
+                    {post.title}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed line-clamp-3 mb-8 flex-grow">
+                    {post.excerpt}
+                  </p>
 
                   {/* Author & CTA */}
                   <div className="border-t border-slate-100 pt-5 flex justify-between items-center mt-auto">
-                    <p className="text-sm font-medium text-slate-700">{post.author}</p>
-                    <button 
-                      onClick={() => setSelectedArticle(post)} 
-                      className="text-[#0F172A] p-2 bg-slate-50 rounded-full group-hover:bg-[#D4AF37] group-hover:text-white transition-colors"
-                      aria-label="Baca selengkapnya"
-                    >
-                      <ArrowRight size={18} />
-                    </button>
+                    <p className="text-sm font-semibold text-[#0F172A]">{post.author}</p>
+                    <div className="text-slate-400 group-hover:text-[#D4AF37] transition-colors duration-300 flex items-center text-sm font-bold">
+                      Baca <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </div>
-              </article>
-            </FadeIn>
-          ))}
-        </div>
+              </motion.article>
+            ))}
+          </AnimatePresence>
+          
+          {/* Pesan jika kategori kosong */}
+          {filteredArticles.length === 0 && (
+            <div className="col-span-full text-center py-20">
+              <p className="text-slate-500 text-lg">Belum ada artikel untuk kategori ini.</p>
+            </div>
+          )}
+        </motion.div>
 
-        {/* Newsletter Subscription Section */}
+        {/* 5. NEWSLETTER SECTION (Elegant CTA) */}
         <FadeIn>
-          <div className="bg-[#0F172A] rounded-3xl p-10 md:p-16 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-10 shadow-2xl relative overflow-hidden">
-            <div className="absolute -right-20 -top-20 opacity-5">
-              <Mail size={300} className="text-white" />
+          <div className="bg-[#0F172A] rounded-[2.5rem] p-10 md:p-16 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-12 shadow-2xl relative overflow-hidden">
+            {/* Dekorasi Background */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+            <div className="absolute -left-10 -bottom-10 opacity-5 pointer-events-none">
+              <Mail size={250} className="text-white" />
             </div>
             
             <div className="lg:w-1/2 relative z-10">
-              <h3 className="font-serif text-3xl md:text-4xl text-white font-bold mb-4">Berlangganan Buletin Hukum</h3>
-              <p className="text-slate-300 text-lg">
-                Dapatkan pembaruan regulasi terbaru, buletin bulanan, dan analisis hukum langsung ke kotak masuk Anda.
+              <h3 className="font-serif text-3xl md:text-5xl text-white font-bold mb-6 leading-tight">Berlangganan <br/> <span className="text-[#D4AF37] italic">Buletin Hukum.</span></h3>
+              <p className="text-slate-300 text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
+                Dapatkan pembaruan regulasi terbaru, buletin bulanan, dan analisis hukum eksklusif langsung ke kotak masuk Anda.
               </p>
             </div>
             
             <div className="w-full lg:w-1/2 relative z-10">
-              <form className="flex flex-col sm:flex-row gap-3">
+              <form className="flex flex-col sm:flex-row gap-4 bg-white/5 p-2 rounded-2xl border border-slate-700 backdrop-blur-sm">
                 <input 
                   type="email" 
-                  placeholder="Alamat Email Perusahaan Anda" 
-                  className="w-full p-4 rounded-lg bg-white/10 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all"
+                  placeholder="Alamat Email Perusahaan" 
+                  className="w-full p-4 bg-transparent text-white placeholder-slate-400 focus:outline-none transition-all"
                   required
                 />
                 <button 
                   type="submit" 
-                  className="bg-[#D4AF37] hover:bg-white text-[#0F172A] font-bold px-8 py-4 rounded-lg transition-colors whitespace-nowrap"
+                  className="bg-[#D4AF37] hover:bg-white text-[#0F172A] font-bold px-8 py-4 rounded-xl transition-colors whitespace-nowrap shadow-lg shadow-[#D4AF37]/20"
                 >
                   Berlangganan
                 </button>
               </form>
-              <p className="text-slate-500 text-xs mt-3">Dengan berlangganan, Anda menyetujui Kebijakan Privasi kami.</p>
+              <p className="text-slate-500 text-sm mt-4 text-center lg:text-left">
+                Dengan berlangganan, Anda menyetujui <a href="#" className="text-slate-400 underline hover:text-white">Kebijakan Privasi</a> kami.
+              </p>
             </div>
           </div>
         </FadeIn>
       </section>
 
-      {/* MODAL / POPUP ARTIKEL LENGKAP */}
-      {selectedArticle && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-[#0F172A]/80 backdrop-blur-sm transition-opacity">
-          <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden relative shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-            
-            {/* Header / Banner Modal */}
-            <div className="relative h-48 sm:h-64 shrink-0 w-full">
-              <img 
-                src={selectedArticle.img} 
-                alt={selectedArticle.title} 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+      {/* 6. MODAL / POPUP ARTIKEL LENGKAP (Framer Motion Enhanced) */}
+      <AnimatePresence>
+        {selectedArticle && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-[#0F172A]/80 backdrop-blur-md"
+          >
+            <motion.div 
+              initial={{ y: 50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 20, opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="bg-white rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden relative shadow-2xl"
+            >
               
-              <button 
-                onClick={() => setSelectedArticle(null)}
-                className="absolute top-4 right-4 p-2 bg-black/30 hover:bg-black/60 rounded-full text-white backdrop-blur-md transition-colors"
-              >
-                <X size={24} />
-              </button>
+              {/* Header / Banner Modal */}
+              <div className="relative h-64 sm:h-80 shrink-0 w-full">
+                <img 
+                  src={selectedArticle.img} 
+                  alt={selectedArticle.title} 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/50 to-transparent" />
+                
+                <button 
+                  onClick={() => setSelectedArticle(null)}
+                  className="absolute top-6 right-6 p-2.5 bg-white/20 hover:bg-[#D4AF37] rounded-full text-white backdrop-blur-md transition-colors duration-300 z-10"
+                >
+                  <X size={24} />
+                </button>
 
-              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-8 right-4 text-white">
-                <span className="bg-[#D4AF37] text-[#0F172A] text-xs font-bold px-2 py-1 rounded-sm uppercase tracking-wider mb-3 inline-block">
-                  {selectedArticle.cat}
-                </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold leading-tight">
-                  {selectedArticle.title}
-                </h2>
-              </div>
-            </div>
-
-            {/* Konten Artikel */}
-            <div className="p-6 sm:p-8 overflow-y-auto">
-              <div className="flex flex-wrap items-center justify-between border-b border-slate-200 pb-4 mb-6 gap-4 text-slate-500 text-sm">
-                <div className="flex items-center gap-4">
-                  <span className="flex items-center"><Calendar size={16} className="mr-2 text-[#D4AF37]"/> {selectedArticle.date}</span>
-                  <span className="flex items-center"><Clock size={16} className="mr-2 text-[#D4AF37]"/> {selectedArticle.readTime}</span>
-                </div>
-                <div className="font-medium text-slate-700">
-                  Ditulis oleh: <span className="text-[#0F172A]">{selectedArticle.author}</span>
+                <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 right-6 text-white z-10">
+                  <span className="bg-[#D4AF37] text-[#0F172A] text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest mb-4 inline-block">
+                    {selectedArticle.cat}
+                  </span>
+                  <h2 className="font-serif text-3xl sm:text-4xl font-bold leading-tight max-w-3xl">
+                    {selectedArticle.title}
+                  </h2>
                 </div>
               </div>
 
-              {/* Teks Konten */}
-              <div className="prose prose-slate max-w-none prose-p:leading-relaxed prose-p:mb-4 text-slate-700">
-                {/* 4. Berikan tipe data (string, number) pada argumen di fungsi map */}
-                {selectedArticle.content.split('\n\n').map((paragraph: string, index: number) => (
-                  <p key={index} className="text-base sm:text-lg mb-4">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </div>
+              {/* Konten Artikel */}
+              <div className="p-6 sm:p-10 overflow-y-auto bg-slate-50">
+                <div className="flex flex-wrap items-center justify-between bg-white p-6 rounded-2xl border border-slate-200 mb-8 gap-4 shadow-sm">
+                  <div className="flex items-center gap-6 text-slate-500 text-sm font-medium uppercase tracking-wide">
+                    <span className="flex items-center"><Calendar size={18} className="mr-2 text-[#D4AF37]"/> {selectedArticle.date}</span>
+                    <span className="flex items-center"><Clock size={18} className="mr-2 text-[#D4AF37]"/> {selectedArticle.readTime}</span>
+                  </div>
+                  <div className="font-semibold text-slate-700 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#0F172A] text-white flex items-center justify-center text-xs">
+                      {selectedArticle.author.charAt(0)}
+                    </div>
+                    {selectedArticle.author}
+                  </div>
+                </div>
 
-          </div>
-        </div>
-      )}
+                {/* Teks Konten */}
+                <div className="prose prose-lg max-w-none prose-slate prose-headings:font-serif prose-a:text-[#D4AF37] prose-p:leading-loose text-slate-700 bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm">
+                  {selectedArticle.content.split('\n\n').map((paragraph: string, index: number) => (
+                    <p key={index} className="mb-6 last:mb-0">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
