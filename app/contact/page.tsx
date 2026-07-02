@@ -40,16 +40,15 @@ export default function ContactPage() {
     setTouched((prev) => ({ ...prev, [name]: true }));
   };
 
-  // 3. HANDLER SUBMIT UNTUK DIRECT KE WHATSAPP (REVISI ENCODE URL)
+  // 3. HANDLER SUBMIT UNTUK DIRECT KE WHATSAPP (PERBAIKAN BUG TERPOTONG)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (isFormValid) {
-      // Nomor WA Admin (Gunakan format internasional tanpa tanda +)
       const adminPhone = "6287788216357"; 
       
-      // Template pesan murni (lebih mudah dibaca dan diatur)
-      const textMessage = `Halo *OBH & Partners*, saya ingin menjadwalkan konsultasi. Berikut adalah detail data diri dan perkara saya:
+      // Menggunakan \n untuk enter dan membuang simbol & agar tidak merusak URL WhatsApp
+      const textMessage = `Halo *OBH Partners*, saya ingin menjadwalkan konsultasi. Berikut adalah detail data diri dan perkara saya:
 
 *Nama / Perusahaan:* ${formData.name}
 *Email:* ${formData.email}
@@ -60,11 +59,11 @@ ${formData.message}
 
 Mohon arahan lebih lanjut. Terima kasih.`;
 
-      // ENCODE: Memastikan karakter seperti spasi, enter, atau simbol (&, @) aman masuk ke dalam URL
+      // Fungsi sakti untuk mengubah teks (termasuk enter/spasi) menjadi format URL yang aman
       const encodedMessage = encodeURIComponent(textMessage);
 
-      // Buat URL WhatsApp API
-      const waUrl = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
+      // Menggunakan api.whatsapp.com karena lebih stabil dibanding wa.me untuk teks panjang
+      const waUrl = `https://api.whatsapp.com/send?phone=${adminPhone}&text=${encodedMessage}`;
 
       // Buka tab baru ke WhatsApp
       window.open(waUrl, "_blank");
@@ -279,14 +278,13 @@ Mohon arahan lebih lanjut. Terima kasih.`;
 
       {/* GLOBAL FLOATING WHATSAPP BUTTON (FAB) */}
       <a 
-        href="https://wa.me/6287788216357?text=Halo%20OBH%20%26%20Partners,%20saya%20butuh%20bantuan%20hukum%20segera." 
+        href="https://api.whatsapp.com/send?phone=6287788216357&text=Halo%20OBH%20Partners%2C%20saya%20butuh%20bantuan%20hukum%20segera." 
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-[999] bg-[#25D366] hover:bg-[#1ebd5a] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_4px_25px_rgba(37,211,102,0.6)] hover:-translate-y-1 transition-all duration-300 group flex items-center justify-center animate-bounce-slow"
         aria-label="Chat WhatsApp"
       >
         <MessageCircle size={32} className="group-hover:scale-110 transition-transform" />
-        {/* Tooltip on hover */}
         <span className="absolute right-full mr-4 bg-white text-[#0F172A] text-sm font-bold py-2 px-4 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 whitespace-nowrap border border-slate-100">
           Layanan Darurat 24/7
         </span>
