@@ -40,7 +40,7 @@ export default function ContactPage() {
     setTouched((prev) => ({ ...prev, [name]: true }));
   };
 
-  // 3. HANDLER SUBMIT UNTUK DIRECT KE WHATSAPP
+  // 3. HANDLER SUBMIT UNTUK DIRECT KE WHATSAPP (REVISI ENCODE URL)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -48,16 +48,23 @@ export default function ContactPage() {
       // Nomor WA Admin (Gunakan format internasional tanpa tanda +)
       const adminPhone = "6287788216357"; 
       
-      // Format pesan yang akan dikirim ke WhatsApp
-      const waText = `Halo *OBH & Partners*, saya ingin menjadwalkan konsultasi. Berikut adalah detail informasi saya:%0A%0A` +
-        `*Nama / Perusahaan:* ${formData.name}%0A` +
-        `*Email:* ${formData.email}%0A` +
-        `*Kategori Masalah:* ${formData.category.toUpperCase()}%0A` +
-        `*Deskripsi Perkara:*%0A${formData.message}%0A%0A` +
-        `Mohon arahan lebih lanjut. Terima kasih.`;
+      // Template pesan murni (lebih mudah dibaca dan diatur)
+      const textMessage = `Halo *OBH & Partners*, saya ingin menjadwalkan konsultasi. Berikut adalah detail data diri dan perkara saya:
+
+*Nama / Perusahaan:* ${formData.name}
+*Email:* ${formData.email}
+*Kategori Masalah:* ${formData.category}
+
+*Deskripsi Perkara:*
+${formData.message}
+
+Mohon arahan lebih lanjut. Terima kasih.`;
+
+      // ENCODE: Memastikan karakter seperti spasi, enter, atau simbol (&, @) aman masuk ke dalam URL
+      const encodedMessage = encodeURIComponent(textMessage);
 
       // Buat URL WhatsApp API
-      const waUrl = `https://wa.me/${adminPhone}?text=${waText}`;
+      const waUrl = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
 
       // Buka tab baru ke WhatsApp
       window.open(waUrl, "_blank");
