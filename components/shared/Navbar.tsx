@@ -28,7 +28,7 @@ export default function Navbar() {
   // --- Data Struktur Menu Sesuai Permintaan ---
   const navLinks = [
     { name: "Beranda", href: "/" },
-    { name: "Tentang LSHI", href: "/about" },
+    { name: "Tentang OBH", href: "/about" },
     { name: "Klien & Pengalaman Kami", href: "/experience" },
     { name: "Publikasi", href: "/insights" },
   ];
