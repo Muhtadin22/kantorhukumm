@@ -1,219 +1,259 @@
-import FadeIn from "@/components/motion/FadeIn";
-import { Mail, GraduationCap, Scale, Briefcase, Award, Quote } from "lucide-react";
+"use client";
 
-// Komponen SVG Kustom untuk LinkedIn
-const LinkedinIcon = ({ size = 20, className = "" }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className={className}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
+import React from "react";
+import Image from "next/image";
+import { Mail, ArrowRight, Gavel, Scale, Briefcase } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa6";
+import FadeIn from "@/components/motion/FadeIn"; 
+
+// Tipe Data
+type TeamMember = {
+  name: string;
+  role: string;
+  specialty: string;
+  image: string;
+};
+
+// Data: Board of Partners
+const partners: TeamMember[] = [
+  {
+    name: "Ahmad Abbas, S.H., LL.M.",
+    role: "Founder & Managing Partner",
+    specialty: "Litigasi & Hukum Korporasi",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Dr. Satya Wardhana, S.H., M.H.",
+    role: "Senior Partner",
+    specialty: "Hukum Pidana & HAM",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Andira Kirana, S.H., M.H.",
+    role: "Partner",
+    specialty: "Hukum Keluarga & Perdata",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Hendra Wijaya, S.H., LL.M.",
+    role: "Partner",
+    specialty: "Hukum Pajak & Kepailitan",
+    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
+// Data: Senior Associates
+const seniorAssociates: TeamMember[] = [
+  {
+    name: "Ratna Kumala, S.H., M.H.",
+    role: "Senior Associate",
+    specialty: "Hukum Ketenagakerjaan",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Reza Rahardian, S.H., M.Kn.",
+    role: "Senior Associate",
+    specialty: "Hukum Properti & Agraria",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Fitri Amanda, S.H.",
+    role: "Senior Associate",
+    specialty: "Hak Kekayaan Intelektual (HKI)",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
+// Data: Associates
+const associates: TeamMember[] = [
+  {
+    name: "Kevin Sanjaya, S.H.",
+    role: "Associate",
+    specialty: "Hukum Perusahaan",
+    image: "https://images.unsplash.com/photo-1600878459190-67ebde4f07a5?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Nabila Putri, S.H.",
+    role: "Associate",
+    specialty: "Alternatif Penyelesaian Sengketa",
+    image: "https://images.unsplash.com/photo-1598550874175-4d0ef4374b48?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Bayu Aji, S.H.",
+    role: "Associate",
+    specialty: "Litigasi Pidana",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Sarah Melati, S.H.",
+    role: "Associate",
+    specialty: "Hukum Lingkungan",
+    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
+// Sub-Komponen Reusable untuk Kartu Pengacara (Premium Glassmorphism Design)
+const LawyerCard = ({ member, index }: { member: TeamMember; index: number }) => (
+  <FadeIn delay={index * 0.15}>
+    <div className="group relative overflow-hidden rounded-2xl bg-slate-800 h-[500px] cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.15)]">
+      
+      {/* Gambar Utama */}
+      <Image 
+        src={member.image} 
+        alt={member.name}
+        fill
+        className="object-cover object-top grayscale-[75%] group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+      />
+      
+      {/* Gradient Transisi Lembut */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/30 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+      
+      {/* Glassmorphism Content Card di Bawah */}
+      <div className="absolute bottom-4 left-4 right-4 z-20 overflow-hidden rounded-xl bg-[#0F172A]/70 backdrop-blur-md border border-white/10 p-5 transform translate-y-4 group-hover:translate-y-0 group-hover:border-[#D4AF37]/50 transition-all duration-500 ease-out">
+        
+        {/* Indikator Aksen Emas */}
+        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-in-out"></div>
+
+        <span className="text-[#D4AF37] font-semibold text-[10px] tracking-[0.2em] uppercase mb-1.5 block">
+          {member.role}
+        </span>
+        <h3 className="font-serif text-xl font-bold text-white mb-1 line-clamp-1">
+          {member.name}
+        </h3>
+        
+        <p className="text-slate-300 text-xs font-light mb-4">
+          Spesialisasi: <span className="font-medium text-white">{member.specialty}</span>
+        </p>
+        
+        {/* Tombol Sosial & Aksi (Tersembunyi hingga di hover) */}
+        <div className="flex items-center justify-between opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 delay-100 border-t border-white/10 pt-4 mt-2">
+          <div className="flex gap-2">
+            <a href="#" aria-label={`LinkedIn ${member.name}`} className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#D4AF37] border border-white/10 flex items-center justify-center text-slate-300 hover:text-[#0F172A] transition-all duration-300">
+              <FaLinkedinIn size={12} />
+            </a>
+            <a href="#" aria-label={`Email ${member.name}`} className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#D4AF37] border border-white/10 flex items-center justify-center text-slate-300 hover:text-[#0F172A] transition-all duration-300">
+              <Mail size={12} />
+            </a>
+          </div>
+          
+          <div className="flex items-center text-[#D4AF37] text-xs font-semibold tracking-wider uppercase group/btn">
+            <span className="mr-1.5">Profil Lengkap</span>
+            <ArrowRight size={14} className="transform group-hover/btn:translate-x-1 transition-transform" />
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </FadeIn>
 );
 
 export default function TeamPage() {
-  // 1. Data Pemilik Perusahaan / Managing Partner
-  const founder = {
-    name: "Ahmad Abbas, S.H., LL.M.",
-    role: "Founder & Managing Partner",
-    edu: "S1 Ilmu Hukum - Universitas Indonesia | LL.M - Harvard Law School",
-    bar: "PERADI, AKPI, HKHPM",
-    expertise: "Corporate Restructuring & Commercial Litigation",
-    quote: "Integritas bukanlah sekadar kepatuhan pada aturan, melainkan komitmen absolut untuk melindungi kepentingan klien dengan cara yang paling terhormat.",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" // Gunakan potret profesional asli
-  };
-
-  // 2. Data 6 Pengacara Lainnya
-  const team = [
-    { 
-      name: "Dr. Satya Wardhana, S.H.", 
-      role: "Senior Partner", 
-      edu: "S3 Ilmu Hukum - Universitas Gadjah Mada",
-      bar: "PERADI, AAI",
-      img: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=600" 
-    },
-    { 
-      name: "Andira Kirana, S.H., M.H.", 
-      role: "Partner - Corporate", 
-      edu: "S2 Hukum Bisnis - Universitas Padjadjaran",
-      bar: "PERADI, HKHPM",
-      img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" 
-    },
-    { 
-      name: "Bimo Wicaksono, S.H.", 
-      role: "Senior Associate", 
-      edu: "S1 Ilmu Hukum - Universitas Diponegoro",
-      bar: "PERADI",
-      img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600" 
-    },
-    { 
-      name: "Clara Monica, S.H., LL.M.", 
-      role: "Senior Associate", 
-      edu: "LL.M - Melbourne Law School",
-      bar: "PERADI",
-      img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600" 
-    },
-    { 
-      name: "David Pratama, S.H.", 
-      role: "Associate", 
-      edu: "S1 Ilmu Hukum - Universitas Airlangga",
-      bar: "PERADI",
-      img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=600" 
-    },
-    { 
-      name: "Elena Kusuma, S.H.", 
-      role: "Junior Associate", 
-      edu: "S1 Ilmu Hukum - Universitas Indonesia",
-      bar: "PERADI (Calon)",
-      img: "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?auto=format&fit=crop&q=80&w=600" 
-    },
-  ];
-
   return (
-    <div className="w-full bg-slate-50 min-h-screen pb-32">
-      {/* Header Section */}
-      <section className="bg-[#0F172A] pt-32 pb-24 text-center">
+    <section className="relative w-full bg-[#0F172A] min-h-screen pb-24 selection:bg-[#D4AF37] selection:text-[#0F172A] overflow-hidden">
+      
+      {/* Background Orbs & Gradients Global yang Disesuaikan */}
+      <div className="absolute top-0 inset-x-0 h-full w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1e293b]/50 via-[#0F172A] to-[#0F172A] z-0 pointer-events-none"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none z-0"></div>
+
+      {/* ================= HERO SECTION ================= */}
+      <div className="relative z-10 w-full min-h-[50vh] flex flex-col items-center justify-center pt-40 pb-20 px-6 lg:px-12 border-b border-white/5">
         <FadeIn>
-          <h1 className="font-serif text-4xl md:text-5xl text-white font-bold mb-6">Profil Penasihat Hukum</h1>
-          <div className="w-20 h-1 bg-[#D4AF37] mx-auto mb-6"></div>
-          <p className="text-slate-300 max-w-2xl mx-auto text-lg px-6">
-            Di balik setiap kemenangan hukum, terdapat tim litigasi dan negosiator yang bekerja dengan presisi analitis dan standar etika tertinggi.
-          </p>
-        </FadeIn>
-      </section>
-
-      {/* 1. KARTU UTAMA: FOUNDER & MANAGING PARTNER */}
-      <section className="container mx-auto px-6 max-w-7xl -mt-12 relative z-10">
-        <FadeIn>
-          <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col lg:flex-row group">
-            {/* Foto Founder */}
-            <div className="w-full lg:w-2/5 relative h-[400px] lg:h-auto overflow-hidden">
-              <img 
-                src={founder.img} 
-                alt={founder.name} 
-                className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
-              />
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-linear-to-t from-[#0F172A]/80 via-transparent to-transparent lg:hidden" />
+          <div className="text-center max-w-4xl mx-auto flex flex-col items-center">
+            
+            {/* Tagline Elegan */}
+            <div className="inline-flex items-center gap-4 mb-8 px-6 py-2 rounded-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse"></span>
+              <span className="text-[#D4AF37] font-semibold tracking-[0.2em] uppercase text-xs">
+                Profil Profesional
+              </span>
             </div>
-
-            {/* Detail Founder */}
-            <div className="w-full lg:w-3/5 bg-[#0F172A] p-10 md:p-14 text-white relative flex flex-col justify-center">
-              <div className="absolute top-0 right-0 p-8 opacity-10">
-                <Award size={120} className="text-[#D4AF37]" />
-              </div>
-              
-              <div className="relative z-10">
-                <span className="inline-block px-3 py-1 bg-[#D4AF37]/20 border border-[#D4AF37]/50 text-[#D4AF37] text-xs font-bold tracking-widest uppercase rounded-sm mb-4">
-                  {founder.role}
-                </span>
-                <h2 className="font-serif text-3xl md:text-4xl font-bold mb-2">{founder.name}</h2>
-                <p className="text-[#D4AF37] mb-8 font-medium">{founder.expertise}</p>
-
-                <div className="space-y-4 mb-10">
-                  <div className="flex items-start gap-4">
-                    <GraduationCap className="text-slate-400 w-5 h-5 shrink-0 mt-0.5" />
-                    <span className="text-slate-300 text-sm leading-relaxed">{founder.edu}</span>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <Scale className="text-slate-400 w-5 h-5 shrink-0 mt-0.5" />
-                    <span className="text-slate-300 text-sm">{founder.bar}</span>
-                  </div>
-                </div>
-
-                <blockquote className="border-l-4 border-[#D4AF37] pl-6 py-2 mb-8">
-                  <Quote className="text-[#D4AF37] w-6 h-6 mb-2 opacity-50" />
-                  <p className="font-serif italic text-slate-300 leading-relaxed">
-                    "{founder.quote}"
-                  </p>
-                </blockquote>
-
-                <div className="flex gap-4">
-                  <button className="bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#0F172A] p-3 rounded-full transition-colors border border-white/10 hover:border-transparent">
-                    <Mail size={20} />
-                  </button>
-                  <button className="bg-white/5 hover:bg-[#D4AF37] text-white hover:text-[#0F172A] p-3 rounded-full transition-colors border border-white/10 hover:border-transparent">
-                    <LinkedinIcon size={20} />
-                  </button>
-                </div>
-              </div>
-            </div>
+            
+            {/* Judul Utama dengan Gradient Emas */}
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400">
+              Mengenal Lebih Dekat <br/>
+              <span className="bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-transparent bg-clip-text inline-block mt-2">
+                Tim Hukum Kami
+              </span>
+            </h1>
+            
+            <p className="text-slate-400 text-lg md:text-xl leading-relaxed font-light max-w-3xl mx-auto">
+              Didukung oleh barisan advokat tangguh, berintegritas, dan berpengalaman tinggi dalam memecahkan kompleksitas hukum dari berbagai spektrum industri.
+            </p>
           </div>
         </FadeIn>
-      </section>
+      </div>
 
-      {/* Pembatas / Label Tim */}
-      <section className="container mx-auto px-6 max-w-7xl mt-24 mb-12">
-        <div className="flex items-center gap-6">
-          <h3 className="font-serif text-2xl font-bold text-[#0F172A] uppercase tracking-wide">Partners & Associates</h3>
-          <div className="flex-grow h-px bg-slate-200"></div>
-        </div>
-      </section>
-
-      {/* 2. KARTU TIM (6 Pengacara) */}
-      <section className="container mx-auto px-6 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {team.map((lawyer, i) => (
-            <FadeIn delay={0.1 * i} key={i}>
-              <div className="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200 hover:border-[#D4AF37]/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col h-full">
-                
-                {/* Bagian Foto */}
-                <div className="relative overflow-hidden h-72">
-                  <img 
-                    src={lawyer.img} 
-                    alt={lawyer.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
-                  />
-                  {/* Label Posisi Mengambang */}
-                  <div className="absolute top-4 left-4 bg-[#0F172A]/90 backdrop-blur-sm px-3 py-1.5 rounded-sm border border-slate-700/50">
-                    <p className="text-[#D4AF37] font-bold text-xs tracking-wider uppercase">{lawyer.role}</p>
-                  </div>
-                </div>
-
-                {/* Bagian Info */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-6 group-hover:text-[#D4AF37] transition-colors">{lawyer.name}</h3>
-                  
-                  <div className="space-y-4 mb-8 flex-grow">
-                    <div className="flex gap-4 text-slate-600 text-sm">
-                      <GraduationCap className="w-5 h-5 text-[#D4AF37] shrink-0" />
-                      <span className="leading-relaxed">{lawyer.edu}</span>
-                    </div>
-                    <div className="flex gap-4 text-slate-600 text-sm">
-                      <Scale className="w-5 h-5 text-[#D4AF37] shrink-0" />
-                      <span>{lawyer.bar}</span>
-                    </div>
-                  </div>
-
-                  {/* Tombol Sosial */}
-                  <div className="border-t border-slate-100 pt-6 flex justify-between items-center mt-auto">
-                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Kontak Langsung</span>
-                    <div className="flex gap-3">
-                      <button className="text-slate-400 hover:text-[#0F172A] transition-colors p-2 hover:bg-slate-50 rounded-full" aria-label="Email">
-                        <Mail size={18} />
-                      </button>
-                      <button className="text-slate-400 hover:text-[#0077b5] transition-colors p-2 hover:bg-slate-50 rounded-full" aria-label="LinkedIn">
-                        <LinkedinIcon size={18} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
+      {/* ================= TEAM GRID SECTION ================= */}
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10 pt-24">
+        
+        {/* Kategori 1: Board of Partners */}
+        <div className="mb-24">
+          <FadeIn>
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-12 h-12 rounded-xl bg-[#0F172A] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.1)] relative overflow-hidden">
+                <div className="absolute inset-0 bg-[#D4AF37]/5"></div>
+                <Gavel size={24} strokeWidth={1.5} className="relative z-10" />
               </div>
-            </FadeIn>
-          ))}
+              <div>
+                <h2 className="text-3xl font-serif text-white font-bold tracking-wide">Board of Partners</h2>
+                <p className="text-slate-400 text-sm mt-1 font-light">Para pemimpin dan pengambil keputusan strategis firma.</p>
+              </div>
+              <div className="flex-1 h-[1px] bg-gradient-to-r from-[#D4AF37]/30 to-transparent ml-4"></div>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {partners.map((member, index) => (
+              <LawyerCard key={`partner-${index}`} member={member} index={index} />
+            ))}
+          </div>
         </div>
-      </section>
-    </div>
+
+        {/* Kategori 2: Senior Associates */}
+        <div className="mb-24">
+          <FadeIn>
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-12 h-12 rounded-xl bg-[#0F172A] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.1)] relative overflow-hidden">
+                <div className="absolute inset-0 bg-[#D4AF37]/5"></div>
+                <Briefcase size={24} strokeWidth={1.5} className="relative z-10" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-serif text-white font-bold tracking-wide">Senior Associates</h2>
+                <p className="text-slate-400 text-sm mt-1 font-light">Praktisi hukum senior yang mengawal kompleksitas penyelesaian perkara.</p>
+              </div>
+              <div className="flex-1 h-[1px] bg-gradient-to-r from-[#D4AF37]/30 to-transparent ml-4"></div>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 justify-center">
+            {seniorAssociates.map((member, index) => (
+              <LawyerCard key={`senior-${index}`} member={member} index={index} />
+            ))}
+          </div>
+        </div>
+
+        {/* Kategori 3: Associates */}
+        <div className="mb-10">
+          <FadeIn>
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-12 h-12 rounded-xl bg-[#0F172A] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.1)] relative overflow-hidden">
+                <div className="absolute inset-0 bg-[#D4AF37]/5"></div>
+                <Scale size={24} strokeWidth={1.5} className="relative z-10" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-serif text-white font-bold tracking-wide">Associates</h2>
+                <p className="text-slate-400 text-sm mt-1 font-light">Barisan pengacara dinamis yang melakukan riset, advokasi, dan penyiapan perkara.</p>
+              </div>
+              <div className="flex-1 h-[1px] bg-gradient-to-r from-[#D4AF37]/30 to-transparent ml-4"></div>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {associates.map((member, index) => (
+              <LawyerCard key={`associate-${index}`} member={member} index={index} />
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 }

@@ -31,6 +31,7 @@ export default function Navbar() {
     { name: "Beranda", href: "/" },
     { name: "Tentang OBH", href: "/about" },
     { name: "Klien & Pengalaman Kami", href: "/experience" },
+    { name: "Tim Pengacara", href: "/team" },
     { name: "Publikasi", href: "/insights" },
   ];
 

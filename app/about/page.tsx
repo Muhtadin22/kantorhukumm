@@ -1,191 +1,232 @@
-import FadeIn from "@/components/motion/FadeIn";
-import { ShieldCheck, BookOpen, Scale, Target, Users, Globe, ChevronDown } from "lucide-react";
+"use client";
 
-export default function AboutPage() {
-  const values = [
-    { icon: Target, title: "PEMBELAAN PIDANA (Criminal Defense)", desc: "Pendampingan hukum menyeluruh bagi tersangka dan terdakwa dalam proses peradilan pidana, memastikan hak-hak konstitusional terlindungi di setiap tahap persidangan." },
-    { icon: BookOpen, title: "HUKUM KELUARGA (Family Law)", desc: "Mediasi dan advokasi dalam sengketa perceraian, hak asuh anak, pembagian harta gono-gini, serta perlindungan terhadap kekerasan dalam rumah tangga." },
-    { icon: ShieldCheck, title: "HAK TENAGA KERJA (Labor Rights)", desc: "Perlindungan hak-hak buruh dan pekerja dari pemutusan hubungan kerja sepihak, eksploitasi, serta pelanggaran kontrak dan upah minimum." },
-    { icon: Users, title: "HAK ASASI MANUSIA (Human Rights)", desc: " Advokasi dan litigasi strategis untuk kasus-kasus pelanggaran hak asasi manusia, diskriminasi, serta kebebasan berekspresi dan berkeyakinan." }
-  ];
+import React from "react";
+import Image from "next/image";
+import { Mail, ArrowRight } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa6";
+import FadeIn from "@/components/motion/FadeIn"; 
 
-  const milestones = [
-    { year: "1999", title: "Pendirian Firma", desc: "Didirikan di tengah krisis moneter untuk memberikan restrukturisasi hukum bagi perusahaan-perusahaan nasional." },
-    { year: "2008", title: "Ekspansi Internasional", desc: "Membuka afiliasi pertama dengan firma hukum di Singapura untuk memfasilitasi transaksi lintas negara (Cross-border M&A)." },
-    { year: "2015", title: "Top 10 Litigation Firm", desc: "Diakui oleh Legal500 dan Chambers Asia-Pacific sebagai salah satu firma litigasi komersial terbaik di Indonesia." },
-    { year: "2026", title: "Era Digital & Inovasi", desc: "Mempelopori divisi khusus untuk hukum teknologi, privasi data (PDP), dan keamanan siber korporasi." },
-  ];
+// Tipe Data
+type TeamMember = {
+  name: string;
+  role: string;
+  specialty: string;
+  image: string;
+};
 
-  return (
-    <div className="w-full bg-white min-h-screen selection:bg-[#D4AF37] selection:text-[#0F172A]">
+// Data: Board of Partners
+const partners: TeamMember[] = [
+  {
+    name: "Ahmad Abbas, S.H., LL.M.",
+    role: "Founder & Managing Partner",
+    specialty: "Litigasi & Hukum Korporasi",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Dr. Satya Wardhana, S.H., M.H.",
+    role: "Senior Partner",
+    specialty: "Hukum Pidana & HAM",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Andira Kirana, S.H., M.H.",
+    role: "Partner",
+    specialty: "Hukum Keluarga & Perdata",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Hendra Wijaya, S.H., LL.M.",
+    role: "Partner",
+    specialty: "Hukum Pajak & Kepailitan",
+    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
+// Data: Senior Associates
+const seniorAssociates: TeamMember[] = [
+  {
+    name: "Ratna Kumala, S.H., M.H.",
+    role: "Senior Associate",
+    specialty: "Hukum Ketenagakerjaan",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Reza Rahardian, S.H., M.Kn.",
+    role: "Senior Associate",
+    specialty: "Hukum Properti & Agraria",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Fitri Amanda, S.H.",
+    role: "Senior Associate",
+    specialty: "Hak Kekayaan Intelektual (HKI)",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
+// Data: Associates
+const associates: TeamMember[] = [
+  {
+    name: "Kevin Sanjaya, S.H.",
+    role: "Associate",
+    specialty: "Hukum Perusahaan",
+    image: "https://images.unsplash.com/photo-1600878459190-67ebde4f07a5?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Nabila Putri, S.H.",
+    role: "Associate",
+    specialty: "Alternatif Penyelesaian Sengketa",
+    image: "https://images.unsplash.com/photo-1598550874175-4d0ef4374b48?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Bayu Aji, S.H.",
+    role: "Associate",
+    specialty: "Litigasi Pidana",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    name: "Sarah Melati, S.H.",
+    role: "Associate",
+    specialty: "Hukum Lingkungan",
+    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
+// Sub-Komponen Reusable untuk Kartu Pengacara
+const LawyerCard = ({ member, index }: { member: TeamMember; index: number }) => (
+  <FadeIn delay={index * 0.15}>
+    <div className="group relative overflow-hidden rounded-xl bg-slate-900 h-[480px] cursor-pointer">
+      {/* Border Interaktif */}
+      <div className="absolute inset-0 border border-white/10 rounded-xl group-hover:border-[#D4AF37]/60 transition-colors duration-700 z-30 pointer-events-none"></div>
+
+      {/* Foto Profil */}
+      <Image 
+        src={member.image} 
+        alt={member.name}
+        fill
+        className="object-cover object-top grayscale-[80%] group-hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-110 z-0"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+      />
       
-      {/* 1. HERO SECTION (Immersive & Minimalist) */}
-      <section className="relative w-full h-[90vh] bg-[#0F172A] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1505664177922-928394b2951b?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center opacity-20 mix-blend-luminosity" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/80 via-[#0F172A]/90 to-[#0F172A]" />
-        
-        <div className="relative z-10 container mx-auto px-6 max-w-5xl text-center mt-20">
-          <FadeIn>
-            <span className="text-[#D4AF37] font-bold tracking-[0.2em] uppercase text-sm mb-6 block">Sejarah & Visi</span>
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-bold mb-8 tracking-tight leading-[1.1]">
-              ADAPTIF - INOVATIF - RESPONSIF <br/>
-              <span className="italic font-light text-slate-300">UNTUK SEMUA KALANGAN</span>
-            </h1>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg md:text-xl font-light">
-              Organisasi Bantuan Hukum yang membantu masyarakat yang sedang dalam masalah hukum dan/atau permasalahan lain terkait hukum untuk semua kalangan.
-            </p>
-          </FadeIn>
-        </div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/60 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500 z-10" />
+      
+      {/* Konten Teks */}
+      <div className="absolute bottom-0 left-0 w-full p-6 z-20 flex flex-col justify-end h-full">
+        <div className="w-8 h-[2px] bg-[#D4AF37] mb-4 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out delay-100"></div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-500">
-          <ChevronDown size={32} strokeWidth={1} />
-        </div>
-      </section>
-
-      {/* 2. OVERVIEW (Modern Sticky Scroll Layout) */}
-      <section className="py-32 container mx-auto px-6 max-w-7xl relative">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+        <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+          <span className="text-[#D4AF37] font-semibold text-[11px] tracking-widest uppercase mb-2 block">
+            {member.role}
+          </span>
+          <h3 className="font-serif text-2xl font-bold text-white mb-2 leading-snug">
+            {member.name}
+          </h3>
           
-          {/* Kiri: Sticky Title */}
-          <div className="lg:w-1/3">
-            <div className="sticky top-32">
-              <FadeIn>
-                <div className="w-12 h-1 bg-[#D4AF37] mb-6"></div>
-                <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0F172A] leading-tight">
-                  Mendefinisikan Ulang Standar Advokasi.
-                </h2>
-              </FadeIn>
-            </div>
-          </div>
-
-          {/* Kanan: Scrolling Content */}
-          <div className="lg:w-2/3 prose prose-lg md:prose-xl text-slate-600">
-            <FadeIn delay={0.2}>
-              <p className="lead text-2xl text-[#0F172A] font-medium mb-8">
-                OBH YPP AL-KAMAL lahir dari keyakinan mendasar bahwa keadilan bukanlah privilese, melainkan hak mutlak bagi setiap insan.
-              </p>
-              <p className="mb-8">
-                Kami memposisikan diri bukan sekadar sebagai pemberi bantuan hukum, melainkan sebagai pendamping dan pelindung strategis yang memastikan masyarakat dari semua kalangan tidak pernah berjalan sendirian dalam menghadapi kerumitan masalah hukum. Pendekatan kami yang adaptif, inovatif, dan responsif memungkinkan kami memberikan solusi hukum terbaik yang bermartabat dan tepat sasaran.
-              </p>
-              <p>
-                Berlandaskan pada pilar integritas, kapabilitas, loyalitas, dan kredibilitas, setiap langkah pengabdian kami berpusat pada kerja yang profesional dan bertanggung jawab. Didukung oleh tim advokat dan pembela umum yang berdedikasi tinggi, kami secara konsisten memberikan pendampingan menyeluruh dan perlindungan hak konstitusional masyarakat melalui empat fondasi layanan utama: Pembelaan Pidana, Hukum Keluarga, Hak Tenaga Kerja, dan Hak Asasi Manusia.
-              </p>
-
-              <div className="grid grid-cols-2 gap-8 mt-12 pt-12 border-t border-slate-200">
-                <div>
-                  <h4 className="text-4xl font-serif font-bold text-[#0F172A] mb-2">4 Pilar</h4>
-                  <p className="text-sm text-slate-500 uppercase tracking-wider font-bold">Praktik Hukum Utama</p>
-                </div>
-                <div>
-                  <h4 className="text-4xl font-serif font-bold text-[#0F172A] mb-2">100%</h4>
-                  <p className="text-sm text-slate-500 uppercase tracking-wider font-bold">Dedikasi Untuk Semua Kalangan</p>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. STATEMENT QUOTE (Oversized & Bold) */}
-      <section className="bg-[#0F172A] py-32 relative overflow-hidden">
-        {/* Dekorasi Kutipan Raksasa di Background */}
-        <div className="absolute -top-10 -left-10 text-[300px] text-white/5 font-serif leading-none select-none">"</div>
-        
-        <div className="container mx-auto px-6 max-w-5xl relative z-10 text-center">
-          <FadeIn>
-            <Scale className="text-[#D4AF37] w-16 h-16 mx-auto mb-10 opacity-80" />
-            <blockquote className="font-serif text-3xl md:text-5xl text-white leading-tight mb-12 italic">
-              "Kemenangan di ruang sidang dimulai jauh sebelum palu diketuk. Ia dibangun di atas fondasi riset yang tak terbantahkan dan integritas yang tak tergoyahkan."
-            </blockquote>
-            <div className="flex flex-col items-center justify-center">
-              <div className="w-16 h-px bg-[#D4AF37] mb-6"></div>
-              <h4 className="font-bold text-xl text-white tracking-wide uppercase">Ahmad Abbas, S.H., LL.M.</h4>
-              <p className="text-[#D4AF37] mt-2 font-medium tracking-widest text-sm uppercase">Founder & Managing Partner</p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* 4. HISTORY / MILESTONES (Vertical Timeline) */}
-      <section className="py-32 bg-slate-50 border-y border-slate-200">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <FadeIn>
-            <div className="text-center mb-20">
-              <h2 className="font-serif text-4xl font-bold text-[#0F172A] mb-4">Jejak Langkah Kami</h2>
-              <p className="text-slate-500">Transformasi dari firma butik menjadi raksasa hukum korporasi.</p>
-            </div>
-          </FadeIn>
-
-          <div className="relative border-l-2 border-slate-200 ml-4 md:ml-1/2 md:translate-x-[50%] space-y-16">
-            {milestones.map((item, i) => (
-              <FadeIn delay={0.1 * i} key={i}>
-                <div className="relative pl-8 md:pl-0">
-                  {/* Titik Timeline */}
-                  <div className="absolute w-4 h-4 bg-[#D4AF37] rounded-full left-[-9px] md:left-[-8px] top-1 shadow-[0_0_0_4px_rgba(212,175,55,0.2)]"></div>
-                  
-                  {/* Konten Timeline */}
-                  <div className={`md:w-1/2 ${i % 2 === 0 ? "md:pr-16 md:text-right md:-ml-[50%]" : "md:pl-16 md:ml-0"}`}>
-                    <span className="text-[#D4AF37] font-bold text-xl font-serif block mb-2">{item.year}</span>
-                    <h4 className="text-2xl font-bold text-[#0F172A] mb-3">{item.title}</h4>
-                    <p className="text-slate-600 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. CORE VALUES (Interactive Bento Grid) */}
-      <section className="py-32 bg-white">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <FadeIn>
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-              <div>
-                <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0F172A] mb-4">Bidang Pelayanan Kami</h2>
-                <div className="w-16 h-1 bg-[#D4AF37]"></div>
-              </div>
-              <p className="text-slate-500 max-w-md md:text-right">
-                Empat pilar yang mendasari setiap keputusan, analisis, dan tindakan kami dalam mewakili klien.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-200 border border-slate-200">
-            {values.map((val, i) => (
-              <FadeIn delay={0.1 * i} key={i}>
-                <div className="bg-white p-12 h-full group hover:bg-[#0F172A] transition-colors duration-500 cursor-default">
-                  <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-8 group-hover:bg-[#1E293B] transition-colors duration-500">
-                    <val.icon className="text-[#D4AF37] w-8 h-8" />
-                  </div>
-                  <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-white transition-colors duration-500">
-                    {val.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed group-hover:text-slate-400 transition-colors duration-500">
-                    {val.desc}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. GLOBAL REACH (Minimalist Banner) */}
-      <section className="py-20 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-6 max-w-5xl text-center">
-          <FadeIn>
-            <Globe className="w-12 h-12 mx-auto text-slate-400 mb-6" />
-            <h3 className="font-serif text-2xl text-[#0F172A] font-bold mb-4">Jaringan Global & Afiliasi</h3>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              Melalui keanggotaan aktif dalam jaringan hukum internasional terkemuka, kami memiliki kapasitas penuh untuk mendampingi transaksi bisnis lintas batas (*cross-border*) klien kami di kawasan Asia Tenggara, Eropa, dan Amerika Utara.
+          <div className="overflow-hidden">
+            <p className="text-slate-300 text-sm font-light mb-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-150">
+              Spesialisasi: <span className="font-medium text-white">{member.specialty}</span>
             </p>
-          </FadeIn>
+          </div>
+          
+          {/* Interaksi Sosial & Tombol Profil */}
+          <div className="flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 border-t border-white/10 pt-4 mt-2">
+            <div className="flex gap-3">
+              <a href="#" aria-label={`LinkedIn ${member.name}`} className="w-9 h-9 rounded-full bg-white/5 hover:bg-[#D4AF37] border border-white/10 flex items-center justify-center text-slate-300 hover:text-[#0F172A] transition-all duration-300">
+                <FaLinkedinIn size={14} />
+              </a>
+              <a href="#" aria-label={`Email ${member.name}`} className="w-9 h-9 rounded-full bg-white/5 hover:bg-[#D4AF37] border border-white/10 flex items-center justify-center text-slate-300 hover:text-[#0F172A] transition-all duration-300">
+                <Mail size={14} />
+              </a>
+            </div>
+            
+            <div className="flex items-center text-[#D4AF37] text-xs font-semibold tracking-wider uppercase group/btn">
+              <span className="mr-2">Profil</span>
+              <ArrowRight size={14} className="transform group-hover/btn:translate-x-1 transition-transform" />
+            </div>
+          </div>
         </div>
-      </section>
-
+      </div>
     </div>
+  </FadeIn>
+);
+
+export default function TeamPage() {
+  return (
+    <section className="relative w-full bg-[#0F172A] min-h-screen pt-32 pb-24 selection:bg-[#D4AF37] selection:text-[#0F172A] overflow-hidden">
+      
+      {/* Dekorasi Background Premium */}
+      <div className="absolute top-0 inset-x-0 h-full w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1e293b] via-[#0F172A] to-[#0F172A] z-0"></div>
+      <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none z-0"></div>
+
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
+        
+        {/* Header Utama */}
+        <FadeIn>
+          <div className="text-center mb-24 flex flex-col items-center">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="h-[1px] w-12 bg-[#D4AF37]"></span>
+              <span className="text-[#D4AF37] font-semibold tracking-[0.2em] uppercase text-xs">
+                Profil Profesional
+              </span>
+              <span className="h-[1px] w-12 bg-[#D4AF37]"></span>
+            </div>
+            
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              Tim Hukum Kami
+            </h1>
+            <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed font-light">
+              Didukung oleh barisan advokat tangguh, berintegritas, dan berpengalaman tinggi dalam memecahkan kompleksitas hukum untuk setiap kalangan.
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* Section 1: Board of Partners */}
+        <div className="mb-20">
+          <FadeIn>
+            <div className="mb-8 border-b border-white/10 pb-4">
+              <h2 className="text-2xl font-serif text-white font-semibold tracking-wide">Board of Partners</h2>
+              <p className="text-slate-400 text-sm mt-1 font-light">Para pemimpin dan pengambil keputusan strategis firma.</p>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {partners.map((member, index) => (
+              <LawyerCard key={`partner-${index}`} member={member} index={index} />
+            ))}
+          </div>
+        </div>
+
+        {/* Section 2: Senior Associates */}
+        <div className="mb-20">
+          <FadeIn>
+            <div className="mb-8 border-b border-white/10 pb-4">
+              <h2 className="text-2xl font-serif text-white font-semibold tracking-wide">Senior Associates</h2>
+              <p className="text-slate-400 text-sm mt-1 font-light">Praktisi hukum senior yang mengawal kompleksitas penyelesaian perkara.</p>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {seniorAssociates.map((member, index) => (
+              <LawyerCard key={`senior-${index}`} member={member} index={index} />
+            ))}
+          </div>
+        </div>
+
+        {/* Section 3: Associates */}
+        <div className="mb-10">
+          <FadeIn>
+            <div className="mb-8 border-b border-white/10 pb-4">
+              <h2 className="text-2xl font-serif text-white font-semibold tracking-wide">Associates</h2>
+              <p className="text-slate-400 text-sm mt-1 font-light">Barisan pengacara dinamis yang melakukan riset, advokasi, dan penyiapan perkara.</p>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {associates.map((member, index) => (
+              <LawyerCard key={`associate-${index}`} member={member} index={index} />
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 }
