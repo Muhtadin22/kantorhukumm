@@ -3,10 +3,10 @@ import { ShieldCheck, BookOpen, Scale, Target, Users, Globe, ChevronDown } from 
 
 export default function AboutPage() {
   const values = [
-    { icon: Target, title: "Ketajaman Strategis", desc: "Menganalisis setiap sudut regulasi untuk menemukan celah dan peluang, mengubah hambatan regulasi menjadi keuntungan kompetitif bagi klien." },
-    { icon: BookOpen, title: "Rigoritas Akademis", desc: "Pendekatan berbasis doktrin dan preseden terbaru. Setiap penyusunan argumen hukum kami didasarkan pada riset yang mendalam dan tak terbantahkan." },
-    { icon: ShieldCheck, title: "Integritas Etik", desc: "Kerahasiaan absolut dan kepatuhan penuh terhadap standar etika profesi advokat. Kepercayaan klien adalah aset tertinggi kami." },
-    { icon: Users, title: "Kemitraan Jangka Panjang", desc: "Kami tidak sekadar bereaksi terhadap masalah. Kami berperan sebagai penasihat strategis yang tumbuh bersama ekspansi bisnis klien." }
+    { icon: Target, title: "PEMBELAAN PIDANA (Criminal Defense)", desc: "Pendampingan hukum menyeluruh bagi tersangka dan terdakwa dalam proses peradilan pidana, memastikan hak-hak konstitusional terlindungi di setiap tahap persidangan." },
+    { icon: BookOpen, title: "HUKUM KELUARGA (Family Law)", desc: "Mediasi dan advokasi dalam sengketa perceraian, hak asuh anak, pembagian harta gono-gini, serta perlindungan terhadap kekerasan dalam rumah tangga." },
+    { icon: ShieldCheck, title: "HAK TENAGA KERJA (Labor Rights)", desc: "Perlindungan hak-hak buruh dan pekerja dari pemutusan hubungan kerja sepihak, eksploitasi, serta pelanggaran kontrak dan upah minimum." },
+    { icon: Users, title: "HAK ASASI MANUSIA (Human Rights)", desc: " Advokasi dan litigasi strategis untuk kasus-kasus pelanggaran hak asasi manusia, diskriminasi, serta kebebasan berekspresi dan berkeyakinan." }
   ];
 
   const milestones = [
@@ -28,11 +28,11 @@ export default function AboutPage() {
           <FadeIn>
             <span className="text-[#D4AF37] font-bold tracking-[0.2em] uppercase text-sm mb-6 block">Sejarah & Visi</span>
             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-bold mb-8 tracking-tight leading-[1.1]">
-              Keadilan Melalui <br/>
-              <span className="italic font-light text-slate-300">Presisi & Keunggulan.</span>
+              ADAPTIF - INOVATIF - RESPONSIF <br/>
+              <span className="italic font-light text-slate-300">UNTUK SEMUA KALANGAN</span>
             </h1>
             <p className="text-slate-400 max-w-2xl mx-auto text-lg md:text-xl font-light">
-              Merevolusi lanskap pelayanan hukum korporasi di Indonesia dengan standar global sejak 1999.
+              Organisasi Bantuan Hukum yang membantu masyarakat yang sedang dalam masalah hukum dan/atau permasalahan lain terkait hukum untuk semua kalangan.
             </p>
           </FadeIn>
         </div>
@@ -63,23 +63,23 @@ export default function AboutPage() {
           <div className="lg:w-2/3 prose prose-lg md:prose-xl text-slate-600">
             <FadeIn delay={0.2}>
               <p className="lead text-2xl text-[#0F172A] font-medium mb-8">
-                Satya & Partners lahir dari keyakinan bahwa layanan hukum tidak seharusnya hanya bersifat reaktif. 
+                OBH YPP AL-KAMAL lahir dari keyakinan mendasar bahwa keadilan bukanlah privilese, melainkan hak mutlak bagi setiap insan.
               </p>
               <p className="mb-8">
-                Kami memposisikan diri sebagai mitra strategis yang mengantisipasi risiko sebelum menjadi krisis, dan merancang solusi sebelum sengketa terjadi. Pemahaman mendalam kami terhadap dinamika ekonomi makro dan mikrokosmos regulasi Indonesia memungkinkan kami memberikan nasihat yang tidak hanya sah secara hukum, tetapi juga viabel secara komersial.
+                Kami memposisikan diri bukan sekadar sebagai pemberi bantuan hukum, melainkan sebagai pendamping dan pelindung strategis yang memastikan masyarakat dari semua kalangan tidak pernah berjalan sendirian dalam menghadapi kerumitan masalah hukum. Pendekatan kami yang adaptif, inovatif, dan responsif memungkinkan kami memberikan solusi hukum terbaik yang bermartabat dan tepat sasaran.
               </p>
               <p>
-                Dengan didukung oleh tim litigator tangguh dan konsultan korporasi elit, kami secara konsisten mewakili entitas multinasional, Badan Usaha Milik Negara (BUMN), hingga konglomerasi swasta terkemuka dalam transaksi paling kompleks dan sengketa dengan risiko tertinggi di berbagai yurisdiksi.
+                Berlandaskan pada pilar integritas, kapabilitas, loyalitas, dan kredibilitas, setiap langkah pengabdian kami berpusat pada kerja yang profesional dan bertanggung jawab. Didukung oleh tim advokat dan pembela umum yang berdedikasi tinggi, kami secara konsisten memberikan pendampingan menyeluruh dan perlindungan hak konstitusional masyarakat melalui empat fondasi layanan utama: Pembelaan Pidana, Hukum Keluarga, Hak Tenaga Kerja, dan Hak Asasi Manusia.
               </p>
 
               <div className="grid grid-cols-2 gap-8 mt-12 pt-12 border-t border-slate-200">
                 <div>
-                  <h4 className="text-4xl font-serif font-bold text-[#0F172A] mb-2">Top 10</h4>
-                  <p className="text-sm text-slate-500 uppercase tracking-wider font-bold">Litigation Firm</p>
+                  <h4 className="text-4xl font-serif font-bold text-[#0F172A] mb-2">4 Pilar</h4>
+                  <p className="text-sm text-slate-500 uppercase tracking-wider font-bold">Praktik Hukum Utama</p>
                 </div>
                 <div>
-                  <h4 className="text-4xl font-serif font-bold text-[#0F172A] mb-2">150+</h4>
-                  <p className="text-sm text-slate-500 uppercase tracking-wider font-bold">Korporasi Global</p>
+                  <h4 className="text-4xl font-serif font-bold text-[#0F172A] mb-2">100%</h4>
+                  <p className="text-sm text-slate-500 uppercase tracking-wider font-bold">Dedikasi Untuk Semua Kalangan</p>
                 </div>
               </div>
             </FadeIn>
@@ -144,7 +144,7 @@ export default function AboutPage() {
           <FadeIn>
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
               <div>
-                <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0F172A] mb-4">Nilai Fundamental</h2>
+                <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0F172A] mb-4">Bidang Pelayanan Kami</h2>
                 <div className="w-16 h-1 bg-[#D4AF37]"></div>
               </div>
               <p className="text-slate-500 max-w-md md:text-right">

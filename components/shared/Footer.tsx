@@ -93,7 +93,7 @@ export default function Footer() {
                     <MapPin className="text-[#D4AF37]" size={18} />
                   </div>
                   <span className="text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed pt-2">
-                    Jl. Jend. Sudirman Kav. 52-53,<br />SCBD, Jakarta Selatan 12190,<br />Indonesia
+                    Plaza Aminta Lt. 5/504, Jl. Let. Jen. TB Simatupang Kav.10,<br />Pondok Pinang, Kebayoran Lama, Jakarta Selatan 12310,<br />Indonesia
                   </span>
                 </li>
               </ul>
@@ -112,7 +112,7 @@ export default function Footer() {
                     <Mail className="text-[#D4AF37]" size={18} />
                   </div>
                   <span className="text-slate-400 group-hover:text-white transition-colors font-medium">
-                    contact@obhpartners.com
+                    obh-yppalkamal@gmail.com
                   </span>
                 </li>
               </ul>

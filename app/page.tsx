@@ -26,30 +26,30 @@ export default function Home() {
             <FadeIn>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/60 border border-slate-600/50 mb-6 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-                <p className="text-slate-200 text-sm font-medium">Firma Hukum Korporasi & Litigasi Terkemuka</p>
+                <p className="text-slate-200 text-sm font-medium">Keadilan Untuk Semua, Hak Untuk Setiap Insan.</p>
               </div>
               
               <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-bold leading-[1.1] mb-6 drop-shadow-lg">
-                Representasi Hukum yang <span className="text-[#D4AF37] italic">Otoritatif</span> & Presisi.
+                Keadilan Untuk Semua, Hak Untuk Setiap Insan. <span className="text-[#D4AF37] italic">Otoritatif</span> & Presisi.
               </h1>
               
               {/* Copywriting Scannable */}
               <div className="text-slate-200 text-lg md:text-xl mb-10 max-w-3xl mx-auto lg:mx-0">
                 <p className="mb-4">
-                  Memberikan solusi hukum strategis untuk bisnis dan individu dengan standar tertinggi melalui:
+                  Memberikan pendampingan dan solusi hukum terbaik bagi masyarakat dengan prinsip Adaptif, Inovatif, dan Responsif melalui:
                 </p>
                 <ul className="flex flex-col gap-3 text-base md:text-lg">
                   <li className="flex items-center justify-center lg:justify-start gap-3">
                     <CheckCircle2 size={20} className="text-[#D4AF37] shrink-0" />
-                    <span>Penyelesaian <strong>Sengketa Komersial</strong> yang taktis</span>
+                    <span>Pendampingan menyeluruh dalam <strong> Pembelaan Pidana </strong> dan  <strong>Hukum Keluarga</strong></span>
                   </li>
                   <li className="flex items-center justify-center lg:justify-start gap-3">
                     <CheckCircle2 size={20} className="text-[#D4AF37] shrink-0" />
-                    <span>Ketajaman di ranah <strong>Litigasi Kompleks</strong></span>
+                    <span>Perlindungan dan advokasi yang tegas untuk <strong>Hak Tenaga Kerja</strong></span>
                   </li>
                   <li className="flex items-center justify-center lg:justify-start gap-3">
                     <CheckCircle2 size={20} className="text-[#D4AF37] shrink-0" />
-                    <span>Navigasi presisi untuk <strong>Kepatuhan Perusahaan</strong></span>
+                    <span>Litigasi strategis untuk penegakan <strong>Hak Asasi Manusia (HAM)</strong></span>
                   </li>
                 </ul>
               </div>
@@ -126,10 +126,10 @@ export default function Home() {
         <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <FadeIn>
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#0F172A] mb-4">Ekspertise Kami</h2>
+              <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#0F172A] mb-4">Bidang Layanan Kami</h2>
               <div className="w-20 h-1 bg-[#D4AF37] mx-auto mb-6"></div>
               <p className="text-slate-600 max-w-2xl mx-auto text-lg">
-                Memberikan representasi hukum yang komprehensif, didukung oleh riset akademis yang mendalam dan pengalaman praksis di persidangan.
+                Empat pilar praktik hukum yang menjadi fondasi pelayanan kami kepada masyarakat, didukung oleh kompetensi tim yang adaptif, inovatif, dan responsif untuk semua kalangan.
               </p>
             </div>
           </FadeIn>
@@ -140,9 +140,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#0F172A] shadow-sm transition-colors">
                   <Briefcase className="text-[#D4AF37] w-8 h-8" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-[#D4AF37] transition-colors">Hukum Korporasi & Komersial</h3>
+                <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-[#D4AF37] transition-colors">Pembelaan Pidana (Criminal Defense)</h3>
                 <p className="text-slate-600 leading-relaxed mb-8">
-                  Pendampingan hukum untuk restrukturisasi perusahaan, merger & akuisisi, kepatuhan regulasi, serta penyusunan kontrak komersial yang kuat.
+                 Pendampingan hukum menyeluruh bagi tersangka dan terdakwa dalam proses peradilan pidana, memastikan hak-hak konstitusional terlindungi di setiap tahap persidangan.
                 </p>
                 <span className="text-[#0F172A] font-bold inline-flex items-center group-hover:text-[#D4AF37] transition-colors">
                   Pelajari Lebih Lanjut <ArrowRight size={18} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
@@ -155,9 +155,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#0F172A] shadow-sm transition-colors">
                   <Scale className="text-[#D4AF37] w-8 h-8" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-[#D4AF37] transition-colors">Litigasi & Resolusi Sengketa</h3>
+                <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-[#D4AF37] transition-colors">Hukum Keluarga (Family Law)</h3>
                 <p className="text-slate-600 leading-relaxed mb-8">
-                  Representasi taktis di peradilan perdata, pidana khusus, pengadilan niaga, dan forum arbitrase nasional maupun internasional.
+                  Mediasi dan advokasi dalam sengketa perceraian, hak asuh anak, pembagian harta gono-gini, serta perlindungan terhadap kekerasan dalam rumah tangga.
                 </p>
                 <span className="text-[#0F172A] font-bold inline-flex items-center group-hover:text-[#D4AF37] transition-colors">
                   Pelajari Lebih Lanjut <ArrowRight size={18} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
@@ -170,9 +170,23 @@ export default function Home() {
                 <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#0F172A] shadow-sm transition-colors">
                   <Shield className="text-[#D4AF37] w-8 h-8" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-[#D4AF37] transition-colors">Kekayaan Intelektual (HKI)</h3>
+                <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-[#D4AF37] transition-colors">Hak Tenaga Kerja (Labor Rights)</h3>
                 <p className="text-slate-600 leading-relaxed mb-8">
-                  Perlindungan komprehensif untuk paten, merek dagang, desain industri, dan hak cipta guna mengamankan aset perusahaan.
+                  Perlindungan hak-hak buruh dan pekerja dari pemutusan hubungan kerja sepihak, eksploitasi, serta pelanggaran kontrak dan upah minimum.
+                </p>
+                <span className="text-[#0F172A] font-bold inline-flex items-center group-hover:text-[#D4AF37] transition-colors">
+                  Pelajari Lebih Lanjut <ArrowRight size={18} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </FadeIn>
+             <FadeIn delay={0.3}>
+              <Link href="/practice-areas/hki" className="block bg-slate-50 p-10 rounded-xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full group">
+                <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#0F172A] shadow-sm transition-colors">
+                  <Shield className="text-[#D4AF37] w-8 h-8" />
+                </div>
+                <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-[#D4AF37] transition-colors">Hak Asasi Manusia (Human Rights)</h3>
+                <p className="text-slate-600 leading-relaxed mb-8">
+                  Advokasi dan litigasi strategis untuk kasus-kasus pelanggaran hak asasi manusia, diskriminasi, serta kebebasan berekspresi dan berkeyakinan.
                 </p>
                 <span className="text-[#0F172A] font-bold inline-flex items-center group-hover:text-[#D4AF37] transition-colors">
                   Pelajari Lebih Lanjut <ArrowRight size={18} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
@@ -189,32 +203,32 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn>
               <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#0F172A] mb-6">
-                Mengapa Memilih <br />Satya & Partners?
+                Mengapa Memilih <br />OBH YPP AL-KAMAL?
               </h2>
               <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-                Kami tidak sekadar memberikan nasihat hukum; kami memberikan panduan strategis yang didesain secara spesifik untuk melindungi kepentingan klien.
+               Kami tidak sekadar memberikan bantuan hukum biasa; kami hadir sebagai pendamping yang berdedikasi untuk memberikan solusi hukum terbaik bagi masyarakat dari semua kalangan.
               </p>
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="text-[#D4AF37] w-6 h-6 shrink-0 mt-1" />
                   <div>
-                    <h4 className="font-bold text-[#0F172A] text-xl mb-2">Kedalaman Pengetahuan Akademis</h4>
-                    <p className="text-slate-600">Sebagian besar mitra kami bergelar doktor hukum dan aktif sebagai akademisi, memastikan argumen hukum selalu didasarkan pada preseden terbaru.</p>
+                    <h4 className="font-bold text-[#0F172A] text-xl mb-2">Kapabilitas & Kredibilitas Profesional</h4>
+                    <p className="text-slate-600">Tim kami memiliki kompetensi tinggi untuk memberikan solusi hukum terbaik, serta senantiasa menjaga kepercayaan masyarakat melalui kerja yang profesional dan bertanggung jawab..</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="text-[#D4AF37] w-6 h-6 shrink-0 mt-1" />
                   <div>
-                    <h4 className="font-bold text-[#0F172A] text-xl mb-2">Pendekatan Berorientasi Hasil</h4>
-                    <p className="text-slate-600">Setiap langkah litigasi maupun perancangan kontrak dieksekusi untuk memenangkan dan mengamankan posisi klien secara sah dan meyakinkan.</p>
+                    <h4 className="font-bold text-[#0F172A] text-xl mb-2">Pendekatan Adaptif, Inovatif, & Responsif</h4>
+                    <p className="text-slate-600">Setiap langkah pendampingan kami jalankan dengan tanggap dan penuh inovasi untuk memastikan hak-hak masyarakat terlindungi sesuai dengan prinsip "keadilan untuk semua, hak untuk setiap insan"..</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <CheckCircle2 className="text-[#D4AF37] w-6 h-6 shrink-0 mt-1" />
                   <div>
-                    <h4 className="font-bold text-[#0F172A] text-xl mb-2">Integritas Tak Tertandingi</h4>
-                    <p className="text-slate-600">Kami mematuhi kode etik profesi yang ketat, menjamin kerahasiaan penuh, dan menghindari konflik kepentingan.</p>
+                    <h4 className="font-bold text-[#0F172A] text-xl mb-2">Integritas & Loyalitas Tinggi</h4>
+                    <p className="text-slate-600">Kami secara konsisten menjunjung tinggi kejujuran dan etika dalam setiap langkah pengabdian, serta setia memegang teguh amanah dan visi misi organisasi..</p>
                   </div>
                 </div>
               </div>
