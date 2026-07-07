@@ -8,7 +8,7 @@ import { FaLinkedinIn, FaInstagram, FaXTwitter } from "react-icons/fa6";
 export default function Footer() {
   const quickLinks = [
     { label: "Beranda", href: "/" },
-    { label: "Tentang LSHI", href: "/about" },
+    { label: "Tentang OBH", href: "/about" },
     { label: "Klien & Pengalaman Kami", href: "/experience" },
     { label: "Publikasi", href: "/insights" },
   ];

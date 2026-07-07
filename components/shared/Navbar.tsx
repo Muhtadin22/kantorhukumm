@@ -12,7 +12,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Deteksi scroll untuk efek shadow & glassmorphism
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -21,12 +20,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Tutup mobile menu saat rute berubah
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  // --- Data Struktur Menu Sesuai Permintaan ---
   const navLinks = [
     { name: "Beranda", href: "/" },
     { name: "Tentang OBH", href: "/about" },
@@ -38,16 +35,14 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-500 border-b ${isScrolled
-          ? "bg-white/90 backdrop-blur-xl border-slate-200/80 shadow-lg shadow-slate-200/50 py-3"
+          ? "bg-white/95 backdrop-blur-xl border-stone-200/80 shadow-lg shadow-stone-200/50 py-3"
           : "bg-white border-transparent py-4"
         }`}
     >
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between relative">
 
-          {/* 1. Logo Foto - Ukuran Telah Diperbesar Sesuai Teks Navigasi */}
           <Link href="/" className="flex items-center z-10 flex-shrink-0 group">
-            {/* Mengubah h-10 menjadi h-12 (Mobile) dan h-12 menjadi h-16 (Desktop) serta menambah lebarnya */}
             <div className="relative h-12 w-[200px] lg:h-20 lg:w-[260px] transition-transform duration-300 group-hover:scale-105">
               <Image
                 src="/obh.png"
@@ -60,7 +55,6 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* 2. Menu Desktop - Warna Teks Navy, Hover Gold */}
           <div className="hidden lg:flex items-center space-x-10 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((item) => (
               <Link
@@ -70,7 +64,6 @@ export default function Navbar() {
                   }`}
               >
                 {item.name}
-                {/* Underline animasi hover Emas */}
                 <span
                   className={`absolute -bottom-1 left-0 h-[2.5px] rounded-full bg-[#D4AF37] transition-all duration-300 ${pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
                     }`}
@@ -79,23 +72,16 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* 3. CTA Desktop & Tombol Mobile */}
           <div className="flex items-center gap-4 z-10">
-
-            {/* CTA Desktop "Hubungi Kami" - Navy ke Gold */}
+            {/* CTA Desktop "Hubungi Kami" - Premium Gold Gradient */}
             <Link
               href="/contact"
-              className="hidden lg:inline-flex items-center group relative overflow-hidden bg-[#0F172A] text-white hover:text-[#0F172A] px-7 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-[#D4AF37]/30 hover:-translate-y-[1px]"
+              className="hidden lg:inline-flex items-center gap-2 bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-[#0F172A] px-7 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-[1px] group"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                Hubungi Kami
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-              {/* Efek Hover Background Emas mengisi dari kiri */}
-              <div className="absolute inset-0 h-full w-full bg-[#D4AF37] -translate-x-full skew-x-12 group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+              Hubungi Kami
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
 
-            {/* Hamburger Mobile - Navy Color */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden text-[#0F172A] hover:text-[#D4AF37] focus:outline-none p-2 transition-colors"
@@ -107,7 +93,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Nav Menu (Tema Terang / Putih) */}
+      {/* Mobile Nav Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -115,7 +101,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden bg-white border-t border-slate-100 overflow-hidden shadow-2xl absolute w-full top-full left-0"
+            className="lg:hidden bg-white border-t border-stone-100 overflow-hidden shadow-2xl absolute w-full top-full left-0"
           >
             <div className="px-6 pt-4 pb-8 space-y-2">
               {navLinks.map((item) => (
@@ -124,19 +110,19 @@ export default function Navbar() {
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-3 text-base font-bold rounded-md transition-all ${pathname === item.href
-                      ? "text-[#D4AF37] bg-slate-50 border-l-4 border-[#D4AF37]"
-                      : "text-[#0F172A] hover:text-[#D4AF37] hover:bg-slate-50 border-l-4 border-transparent"
+                      ? "text-[#0F172A] bg-stone-50 border-l-4 border-[#D4AF37]"
+                      : "text-slate-600 hover:text-[#0F172A] hover:bg-stone-50 border-l-4 border-transparent"
                     }`}
                 >
                   {item.name}
                 </Link>
               ))}
 
-              {/* CTA Mobile */}
+              {/* CTA Mobile - Premium Gold Gradient */}
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-2 mt-6 mx-2 text-center bg-[#0F172A] text-white px-5 py-4 rounded-xl text-base font-bold shadow-lg transition-all active:scale-95"
+                className="flex items-center justify-center gap-2 mt-6 mx-2 text-center bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-[#0F172A] px-5 py-4 rounded-xl text-base font-bold shadow-lg transition-all active:scale-95"
               >
                 Hubungi Kami Sekarang <ArrowRight size={18} />
               </Link>

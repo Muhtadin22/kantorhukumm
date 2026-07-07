@@ -25,21 +25,21 @@ export default function ExperiencePage() {
     {
       title: "Restrukturisasi Utang Multinasional (PKPU)",
       client: "Konglomerasi Properti Terkemuka",
-      value: "Rp 5.2 Triliun",
+      value: "IDR 5.2 Triliun",
       desc: "Berhasil mencapai homologasi (perdamaian) dalam proses PKPU yang kompleks dengan lebih dari 100 kreditur sindikasi asing dan domestik.",
       category: "Litigasi & Resolusi Sengketa"
     },
     {
       title: "Merger & Akuisisi Lintas Batas",
       client: "Perusahaan Fintech Asia Tenggara",
-      value: "USD 120 Juta",
+      value: "IDR 120 Juta",
       desc: "Menjadi konsultan hukum utama dalam proses due diligence, negosiasi, dan penyusunan SPA tanpa kendala regulatori.",
       category: "Hukum Korporasi"
     },
     {
       title: "Kemenangan Arbitrase Internasional",
       client: "Perusahaan Konstruksi BUMN",
-      value: "USD 45 Juta",
+      value: "IDR 45 Juta",
       desc: "Memenangkan klien dalam sengketa infrastruktur di forum Singapore International Arbitration Centre (SIAC) melawan kontraktor asing.",
       category: "Arbitrase Internasional"
     },

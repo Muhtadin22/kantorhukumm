@@ -7,7 +7,6 @@ import { Scale, Shield, Briefcase, ChevronRight, CheckCircle2, ArrowRight, Users
 import FadeIn from "@/components/motion/FadeIn"; 
 import { motion, AnimatePresence } from "framer-motion";
 
-// 1. Tipe data untuk Layanan
 type PracticeArea = {
   id: string;
   icon: React.ElementType;
@@ -17,10 +16,8 @@ type PracticeArea = {
 };
 
 export default function Home() {
-  // 2. State untuk mengontrol Pop-up (Modal)
   const [selectedService, setSelectedService] = useState<PracticeArea | null>(null);
 
-  // 3. Data Layanan (Termasuk deskripsi lengkap untuk pop-up)
   const services: PracticeArea[] = [
     {
       id: "pidana",
@@ -88,14 +85,14 @@ export default function Home() {
             <FadeIn>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/60 border border-slate-600/50 mb-6 backdrop-blur-sm">
                 <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-                <p className="text-slate-200 text-sm font-medium">Keadilan Untuk Semua, Hak Untuk Setiap Insan.</p>
+                <p className="text-slate-300 text-sm font-medium">Keadilan Untuk Semua, Hak Untuk Setiap Insan.</p>
               </div>
               
               <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-bold leading-[1.1] mb-6 drop-shadow-lg">
-                Keadilan Untuk Semua, Hak Untuk Setiap Insan. <span className="text-[#D4AF37] italic">Otoritatif</span> & Presisi.
+                Keadilan Untuk Semua, Hak Untuk Setiap Insan. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] italic">Otoritatif</span> & Presisi.
               </h1>
               
-              <div className="text-slate-200 text-lg md:text-xl mb-10 max-w-3xl mx-auto lg:mx-0">
+              <div className="text-slate-300 text-lg md:text-xl mb-10 max-w-3xl mx-auto lg:mx-0">
                 <p className="mb-4">
                   Memberikan pendampingan dan solusi hukum terbaik bagi masyarakat dengan prinsip Adaptif, Inovatif, dan Responsif melalui:
                 </p>
@@ -118,13 +115,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
                 <Link 
                   href="/contact" 
-                  className="bg-[#D4AF37] hover:bg-[#b8952b] text-[#0F172A] font-extrabold px-10 py-4 rounded-md transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]"
+                  className="bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-[#0F172A] font-extrabold px-10 py-4 rounded-md flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:-translate-y-1"
                 >
                   Konsultasi Sekarang <ChevronRight size={20} />
                 </Link>
                 <Link 
                   href="/about" 
-                  className="bg-transparent border border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-md transition-all flex items-center justify-center backdrop-blur-sm"
+                  className="bg-transparent border border-white/30 text-white font-semibold px-8 py-4 rounded-md flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/50"
                 >
                   Tentang Kami
                 </Link>
@@ -135,7 +132,7 @@ export default function Home() {
       </section>
 
       {/* 2. TRUST BAR SECTION */}
-      <section className="bg-white py-8 border-b border-slate-200 z-20 relative shadow-sm">
+      <section className="bg-white py-8 border-b border-stone-200 z-20 relative shadow-sm">
         <div className="container mx-auto px-6 text-center">
           <FadeIn delay={0.1}>
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">
@@ -153,10 +150,10 @@ export default function Home() {
       </section>
 
       {/* 3. PERFORMANCE INDICATORS (Stats) */}
-      <section className="bg-slate-50 py-12 relative z-10 border-b border-slate-200">
+      <section className="bg-stone-50 py-12 relative z-10 border-b border-stone-200">
         <div className="container mx-auto px-6">
           <FadeIn delay={0.2}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-stone-200">
               <div className="p-4">
                 <h3 className="font-serif text-4xl md:text-5xl font-bold text-[#0F172A]">25+</h3>
                 <p className="text-slate-500 mt-2 font-medium">Tahun Pengalaman</p>
@@ -178,7 +175,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. PRACTICE AREAS OVERVIEW (Revisi menggunakan Modal/Pop-up) */}
+      {/* 4. PRACTICE AREAS OVERVIEW */}
       <section className="py-24 bg-white relative">
         <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <FadeIn>
@@ -194,21 +191,20 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <FadeIn delay={index * 0.1} key={service.id}>
-                {/* Menggunakan BUTTON untuk men-trigger Pop-up */}
                 <button 
                   onClick={() => setSelectedService(service)}
-                  className="flex flex-col text-left bg-slate-50 p-10 rounded-xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-full w-full group"
+                  className="flex flex-col text-left bg-stone-50 p-10 rounded-xl shadow-sm border border-stone-200 hover:shadow-xl hover:-translate-y-1 hover:border-[#D4AF37]/30 transition-all duration-300 h-full w-full group"
                 >
-                  <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#0F172A] shadow-sm transition-colors">
-                    <service.icon className="text-[#D4AF37] w-8 h-8" />
+                  <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mb-6 shadow-sm border border-stone-100 group-hover:shadow-md transition-all">
+                    <service.icon className="text-[#D4AF37] w-8 h-8 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4 group-hover:text-[#D4AF37] transition-colors">
+                  <h3 className="font-serif text-2xl font-bold text-[#0F172A] mb-4">
                     {service.title}
                   </h3>
                   <p className="text-slate-600 leading-relaxed mb-8 flex-grow">
                     {service.shortDesc}
                   </p>
-                  <span className="text-[#0F172A] font-bold inline-flex items-center group-hover:text-[#D4AF37] transition-colors mt-auto">
+                  <span className="text-[#0F172A] font-bold inline-flex items-center group-hover:text-[#B38728] transition-colors mt-auto">
                     Pelajari Lebih Lanjut <ArrowRight size={18} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
                   </span>
                 </button>
@@ -227,11 +223,7 @@ export default function Home() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-[#0F172A]/80 backdrop-blur-md"
           >
-            {/* Area klik luar untuk menutup */}
-            <div 
-              className="absolute inset-0 cursor-pointer" 
-              onClick={() => setSelectedService(null)} 
-            />
+            <div className="absolute inset-0 cursor-pointer" onClick={() => setSelectedService(null)} />
 
             <motion.div 
               initial={{ y: 50, opacity: 0, scale: 0.95 }}
@@ -241,13 +233,12 @@ export default function Home() {
               className="bg-white rounded-3xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden relative shadow-2xl z-10"
             >
               
-              {/* Header Modal */}
               <div className="bg-[#0F172A] p-8 sm:p-10 relative overflow-hidden shrink-0">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
                 
                 <button 
                   onClick={() => setSelectedService(null)}
-                  className="absolute top-6 right-6 p-2 bg-white/10 hover:bg-[#D4AF37] rounded-full text-white backdrop-blur-md transition-colors duration-300 z-10"
+                  className="absolute top-6 right-6 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white backdrop-blur-md transition-colors duration-300 z-10"
                 >
                   <X size={24} />
                 </button>
@@ -262,8 +253,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Body Modal (Teks Detail) */}
-              <div className="p-8 sm:p-10 overflow-y-auto bg-slate-50">
+              <div className="p-8 sm:p-10 overflow-y-auto bg-stone-50">
                 <div className="prose prose-lg max-w-none prose-slate text-slate-700">
                   {selectedService.fullDesc.map((paragraph, idx) => (
                     <p key={idx} className="mb-6 leading-relaxed">
@@ -272,11 +262,10 @@ export default function Home() {
                   ))}
                 </div>
                 
-                {/* Tombol Aksi di dalam Modal */}
-                <div className="mt-10 pt-8 border-t border-slate-200">
+                <div className="mt-10 pt-8 border-t border-stone-200">
                   <Link 
                     href={`/contact?service=${selectedService.id}`} 
-                    className="inline-flex bg-[#0F172A] hover:bg-[#D4AF37] text-white hover:text-[#0F172A] font-bold px-8 py-4 rounded-xl transition-all items-center justify-center gap-2 shadow-lg w-full sm:w-auto"
+                    className="inline-flex bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-[#0F172A] font-bold px-8 py-4 rounded-xl items-center justify-center gap-2 shadow-lg w-full sm:w-auto transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"
                   >
                     Konsultasikan Masalah Ini <ChevronRight size={20} />
                   </Link>
@@ -287,10 +276,9 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* --- END MODAL --- */}
 
-      {/* 5. WHY CHOOSE US / VALUE PROPOSITION */}
-      <section className="py-24 bg-slate-50 border-t border-slate-200">
+      {/* 5. WHY CHOOSE US */}
+      <section className="py-24 bg-stone-50 border-t border-stone-200">
         <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <FadeIn>
@@ -336,8 +324,8 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-slate-900/40" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#0F172A]/90 to-transparent flex items-end p-10">
-                  <blockquote className="border-l-4 border-[#D4AF37] pl-6 text-white z-10">
-                    <p className="font-serif text-2xl font-medium italic mb-4">"Dalam hukum, presisi bukanlah pilihan, melainkan kewajiban absolut."</p>
+                  <blockquote className="border-l-4 border-[#D4AF37] pl-6 text-slate-300 z-10">
+                    <p className="font-serif text-2xl font-medium italic mb-4 text-white">"Dalam hukum, presisi bukanlah pilihan, melainkan kewajiban absolut."</p>
                     <footer className="font-bold text-[#D4AF37]">— Dr. Satya Wardhana, S.H., LL.M.</footer>
                   </blockquote>
                 </div>
@@ -349,7 +337,6 @@ export default function Home() {
 
       {/* 6. BOTTOM CTA SECTION */}
       <section className="py-24 bg-[#0F172A] relative overflow-hidden">
-        {/* Latar Belakang Aksen Tipis */}
         <div className="absolute -right-20 -top-20 opacity-5">
           <Scale size={400} className="text-white" />
         </div>
@@ -364,7 +351,7 @@ export default function Home() {
             </p>
             <Link 
               href="/contact" 
-              className="inline-flex bg-[#D4AF37] hover:bg-white text-[#0F172A] font-extrabold px-12 py-5 rounded-md transition-all items-center justify-center gap-2 shadow-xl hover:scale-105"
+              className="inline-flex bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] text-[#0F172A] font-extrabold px-12 py-5 rounded-md items-center justify-center gap-2 transition-all duration-300 shadow-xl hover:shadow-[0_0_40px_rgba(212,175,55,0.4)] hover:-translate-y-1 hover:scale-105"
             >
               Hubungi Pengacara Kami
             </Link>
