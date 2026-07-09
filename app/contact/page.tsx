@@ -149,7 +149,7 @@ Mohon arahan lebih lanjut. Terima kasih.`;
                 {/* EMBED GOOGLE MAPS */}
                 <div className="h-64 w-full relative z-10 border-t border-slate-700/50 grayscale hover:grayscale-0 transition-all duration-700 opacity-80 hover:opacity-100">
                   <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.267237090885!2d106.8060383!3d-6.2284589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14555555555%3A0x123456789abcdef!2sSCBD%20Jakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.9981037988973!2d106.82101447499072!3d-6.263978093724616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3007a6e6525%3A0x49264b69a2df14f1!2sOBH%20YPP%20Al-Kamal%20Jakarta!5e0!3m2!1sid!2sid!4v1783404198895!5m2!1sid!2sid" 
                     width="100%" 
                     height="100%" 
                     style={{ border: 0 }} 

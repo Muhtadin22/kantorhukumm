@@ -68,48 +68,42 @@ export default function Home() {
   return (
     <div className="w-full selection:bg-[#D4AF37] selection:text-[#0F172A]">
       
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION (Teks Kiri, Logo Kanan) */}
       <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#0F172A]">
-        <Image 
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000" 
-          alt="Suasana Kantor Firma Hukum Profesional"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-slate-900/75" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/40 to-transparent" />
+        {/* Background Layer - Diperbarui menjadi foto dan disesuaikan gradiennya */}
+        <div className="absolute inset-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?auto=format&fit=crop&q=80&w=2000" 
+            alt="Law and Justice Background"
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+        </div>
+        {/* Gradien dari kiri ke kanan agar teks di kiri mudah dibaca, sementara foto di kanan tetap samar-samar terlihat */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A] via-[#0F172A]/80 to-[#0F172A]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent" />
 
-        <div className="relative z-10 container mx-auto px-6 lg:px-12 text-center lg:text-left grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mt-12">
-          <div className="lg:col-span-8 pt-10">
+        <div className="relative z-10 container mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-20 lg:mt-12">
+          
+          {/* Kolom Kiri: Konten Teks - Dibuat lebih ringkas */}
+          <div className="pt-10 order-2 lg:order-1 text-center lg:text-left">
             <FadeIn>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/60 border border-slate-600/50 mb-6 backdrop-blur-sm">
+              <div className="inline-flex items-center justify-center lg:justify-start gap-2 px-4 py-2 rounded-full bg-slate-800/60 border border-slate-600/50 mb-6 backdrop-blur-sm mx-auto lg:mx-0">
                 <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-                <p className="text-slate-300 text-sm font-medium">Keadilan Untuk Semua, Hak Untuk Setiap Insan.</p>
+                <p className="text-slate-300 text-sm font-medium">OBH YPP AL-KAMAL</p>
               </div>
               
-              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white font-bold leading-[1.1] mb-6 drop-shadow-lg">
-                Keadilan Untuk Semua, Hak Untuk Setiap Insan. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] italic">Otoritatif</span> & Presisi.
+              <h1 className="font-serif text-5xl md:text-6xl lg:text-6xl xl:text-7xl text-white font-bold leading-[1.15] mb-6 drop-shadow-lg">
+                Keadilan Bagi <br className="hidden md:block"/>
+                Setiap Insan. <br className="hidden md:block"/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] italic">Otoritatif</span> & Presisi.
               </h1>
               
-              <div className="text-slate-300 text-lg md:text-xl mb-10 max-w-3xl mx-auto lg:mx-0">
-                <p className="mb-4">
-                  Memberikan pendampingan dan solusi hukum terbaik bagi masyarakat dengan prinsip Adaptif, Inovatif, dan Responsif melalui:
+              <div className="text-slate-300 text-lg md:text-xl mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                <p>
+                  Memberikan pendampingan dan solusi hukum terbaik bagi masyarakat dengan prinsip Adaptif, Inovatif, dan Responsif demi tegaknya hak asasi dan keadilan.
                 </p>
-                <ul className="flex flex-col gap-3 text-base md:text-lg">
-                  <li className="flex items-center justify-center lg:justify-start gap-3">
-                    <CheckCircle2 size={20} className="text-[#D4AF37] shrink-0" />
-                    <span>Pendampingan menyeluruh dalam <strong> Pembelaan Pidana </strong> dan  <strong>Hukum Keluarga</strong></span>
-                  </li>
-                  <li className="flex items-center justify-center lg:justify-start gap-3">
-                    <CheckCircle2 size={20} className="text-[#D4AF37] shrink-0" />
-                    <span>Perlindungan dan advokasi yang tegas untuk <strong>Hak Tenaga Kerja</strong></span>
-                  </li>
-                  <li className="flex items-center justify-center lg:justify-start gap-3">
-                    <CheckCircle2 size={20} className="text-[#D4AF37] shrink-0" />
-                    <span>Litigasi strategis untuk penegakan <strong>Hak Asasi Manusia (HAM)</strong></span>
-                  </li>
-                </ul>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
@@ -128,6 +122,39 @@ export default function Home() {
               </div>
             </FadeIn>
           </div>
+
+          {/* Kolom Kanan: Logo dengan Efek Glow & Floating */}
+          <div className="order-1 lg:order-2 flex justify-center items-center relative h-[300px] sm:h-[400px] lg:h-[500px] w-full">
+            <FadeIn delay={0.2}>
+              {/* Efek Pendaran Cahaya (Glow) di belakang logo */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] sm:w-[350px] lg:w-[450px] h-[250px] sm:h-[350px] lg:h-[450px] bg-[#D4AF37]/20 blur-[80px] rounded-full mix-blend-screen pointer-events-none z-0"></div>
+              
+              {/* Efek Pendaran Cahaya Tambahan (Putih) untuk menonjolkan biru logo */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] sm:w-[200px] lg:w-[250px] h-[150px] sm:h-[200px] lg:h-[250px] bg-white/10 blur-[50px] rounded-full mix-blend-overlay pointer-events-none z-0"></div>
+
+              {/* Logo Image dengan Animasi Floating */}
+              <motion.div
+                animate={{
+                  y: [-15, 15, -15],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative z-10 w-[200px] sm:w-[280px] lg:w-[380px] aspect-square drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+              >
+                <Image
+                  src="/obh.png" // Pastikan path logo Anda benar
+                  alt="Logo OBH YPP AL-KAMAL"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </motion.div>
+            </FadeIn>
+          </div>
+
         </div>
       </section>
 
