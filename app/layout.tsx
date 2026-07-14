@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
-  title: "Satya & Partners | Corporate & Litigation Law Firm",
+  title: "kantor hukum | OBH YPP AL-KAMAL",
   description: "Providing authoritative legal counsel, academic rigor, and professional excellence in Jakarta, Indonesia.",
 };
 
